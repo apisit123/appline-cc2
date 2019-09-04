@@ -28,7 +28,8 @@ foreach ($events as $event) {
 	
 	if (($event instanceof \LINE\LINEBot\Event\FollowEvent)) {
 		$_uid = $event->getUserId();
-		echo $_uid;
+		error_log($_uid);
+		error_log("hello, this is a test!");
 		link_richmenu($_uid,$richmenu[0]);
 		break;
 	}
