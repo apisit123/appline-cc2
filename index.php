@@ -108,8 +108,8 @@ foreach ($events as $event) {
                 		//post_line($data);
 
 				error_log("promo process");
-        		$response = $bot->linkRichMenu($_uid, $richmenu[0]);
-				$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($response);
+        		$msg = link_richmenu($_uid,$richmenu[0]);
+				$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($msg);
 				break;
 
       		case "test" :
@@ -141,8 +141,18 @@ function link_richmenu($userID,$richID) {
 	));
 
 	$response = curl_exec($curl);
+	$err = curl_error($curl);
+
 	curl_close($curl);
-	error_log("Response :: ".$response);
+
+	if ($err) {
+	  error_log("cURL Error #:" . $err);
+	} else {
+	  error_log("Message :: ".$messageText[0]);
+	}
+
+	return $response;
+	
 }
 
 
