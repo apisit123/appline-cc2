@@ -101,6 +101,10 @@ foreach ($events as $event) {
 
 
 		switch ($messageText[0]) {
+
+			case "update" :
+				$respRichMenu = $bot->linkRichMenu($_uid, $richmenu[0]);
+				break;
 			case "promotion" :
 				//$data = get_promotion($_uid);
                 		//post_line($data);
