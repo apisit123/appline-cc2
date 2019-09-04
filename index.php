@@ -2,14 +2,13 @@
 
 require_once 'vendor/autoload.php';
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
-$log = new Logger('name');
-$log->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
-
-$log->addWarning('Foo');
-
+use LINE\LINEBot\Event\Parser\EventRequestParser;
+use LINE\LINEBot\HTTPClient;
+use LINE\LINEBot\MessageBuilder;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+use LINE\LINEBot\Response;
+use LINE\LINEBot\SignatureValidator;
+use LINE\LINEBot\RichMenuBuilder;
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient("Bearer a9Kj4XxQXy/VyXbSB804kWHqZMGZ2ZZbrrMpTFlm7hd9ZdQ37U1cqC7LBYkJrXQR1Gis4bXMNQb/L0sYfkRV897EmhEq/Ir2P4SSNTx2tBV87aAouxozywtwVvi2wBXRzmv8KMsfMuxnNBwfrigDyAdB04t89/1O/w1cDnyilFU=");
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => "d77dbc05ab9394717939433eb2e8f7e3"]);
