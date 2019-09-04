@@ -109,9 +109,10 @@ foreach ($events as $event) {
 				break;
 
       		case "test" :
-      			post_line($_uid, "text", "test text");
+      			$xx = post_line($_uid, "text", "test text");
+      			error_log($xx);
         		$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("ทดสอบ");
-        		error_log($outputText);
+
       			break;
 			
 			default:
@@ -120,7 +121,7 @@ foreach ($events as $event) {
 		}
 		
 		$response = $bot->replyMessage($event->getReplyToken(), $outputText);
-		error_log($response);
+
 	}
 }
   
