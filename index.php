@@ -49,9 +49,9 @@ use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
 
 /// การตั้งค่าเกี่ยวกับ bot ใน LINE Messaging API
-define('LINE_MESSAGE_CHANNEL_ID','1636539927');
-define('LINE_MESSAGE_CHANNEL_SECRET','d77dbc05ab9394717939433eb2e8f7e3');
-define('LINE_MESSAGE_ACCESS_TOKEN','Bearer a9Kj4XxQXy/VyXbSB804kWHqZMGZ2ZZbrrMpTFlm7hd9ZdQ37U1cqC7LBYkJrXQR1Gis4bXMNQb/L0sYfkRV897EmhEq/Ir2P4SSNTx2tBV87aAouxozywtwVvi2wBXRzmv8KMsfMuxnNBwfrigDyAdB04t89/1O/w1cDnyilFU=');
+define('LINE_MESSAGE_CHANNEL_ID','1648723890');
+define('LINE_MESSAGE_CHANNEL_SECRET','1e61a9805bde296ff2b3b2fbbe302220');
+define('LINE_MESSAGE_ACCESS_TOKEN','Bearer ZJtS+TuOmS9FWEHc1Idm7RF2dXjszDOOWHDAUcx2LLMyQP9DStP4PUXeoQjX6gtdYRy9hBD5T5opbbeHMb5zjU3PonwLzSKCbkJ2CQ5scC7uTmojN2I38anReeBjmzdcKGl6sq5758gXHdB21DgeHlGUYhWQfeY8sLGRXgo3xvw=');
 
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
@@ -95,6 +95,8 @@ foreach ($events as $event) {
         $messageText = explode("-",$buff);
         
         error_log("Message :: ".$messageText[0]);
+
+        error_log("Authorization: ".LINE_MESSAGE_ACCESS_TOKEN);
         
 
 
