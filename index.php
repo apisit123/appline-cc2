@@ -128,34 +128,54 @@ foreach ($events as $event) {
 
 
 function link_richmenu($userID,$richID) {
-    $curl = curl_init();
 
-	curl_setopt_array($curl, array(
-	  CURLOPT_URL => "https://api.line.me/v2/bot/user/".$userID."/richmenu/".$richID,
-	  CURLOPT_RETURNTRANSFER => true,
-	  CURLOPT_ENCODING => "",
-	  CURLOPT_MAXREDIRS => 10,
-	  CURLOPT_TIMEOUT => 30,
-	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	  CURLOPT_CUSTOMREQUEST => "POST",
-	  CURLOPT_POSTFIELDS => "",
-	  CURLOPT_HTTPHEADER => array(
-	    "Authorization: Bearer XuWMr1KtT16go8TtsiDaLBVIRla/IX6JagScETaCaAt7wApMNWb85YDoG19amCG6c6ttH/iQzmhR5gMFQL29qTIDVIjbpJB0VkEsbVhfdnwGM9QkhoP5gKT64yG4lem5jFN9K5yKAYAagLOQybaLWAdB04t89/1O/w1cDnyilFU=",
-	    "Cache-Control: no-cache",
-	    "Postman-Token: 017fa460-0c75-45f7-9f28-5b046dfd245e"
-	  ),
+	$request = new HttpRequest();
+	$request->setUrl("https://api.line.me/v2/bot/user/".$userID."/richmenu/".$richID);
+	$request->setMethod(HTTP_METH_POST);
+
+	$request->setHeaders(array(
+	  'Host' => 'api.line.me',
+	  'Authorization' => LINE_MESSAGE_ACCESS_TOKEN,
+	  'Content-Type' => 'application/json'
 	));
 
-	$response = curl_exec($curl);
-	$err = curl_error($curl);
+	try {
+	  $response = $request->send();
 
-	curl_close($curl);
-
-	if ($err) {
-	  echo "cURL Error #:" . $err;
-	} else {
-	  echo $response;
+	  error_log($response->getBody());
+	} catch (HttpException $ex) {
+	  error_log($ex);
 	}
+
+
+ //    $curl = curl_init();
+
+	// curl_setopt_array($curl, array(
+	//   CURLOPT_URL => ",
+	//   CURLOPT_RETURNTRANSFER => true,
+	//   CURLOPT_ENCODING => "",
+	//   CURLOPT_MAXREDIRS => 10,
+	//   CURLOPT_TIMEOUT => 30,
+	//   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	//   CURLOPT_CUSTOMREQUEST => "POST",
+	//   CURLOPT_POSTFIELDS => "",
+	//   CURLOPT_HTTPHEADER => array(
+	//     "Authorization: Bearer XuWMr1KtT16go8TtsiDaLBVIRla/IX6JagScETaCaAt7wApMNWb85YDoG19amCG6c6ttH/iQzmhR5gMFQL29qTIDVIjbpJB0VkEsbVhfdnwGM9QkhoP5gKT64yG4lem5jFN9K5yKAYAagLOQybaLWAdB04t89/1O/w1cDnyilFU=",
+	//     "Cache-Control: no-cache",
+	//     "Postman-Token: 017fa460-0c75-45f7-9f28-5b046dfd245e"
+	//   ),
+	// ));
+
+	// $response = curl_exec($curl);
+	// $err = curl_error($curl);
+
+	// curl_close($curl);
+
+	// if ($err) {
+	//   echo "cURL Error #:" . $err;
+	// } else {
+	//   echo $response;
+	// }
 }
 
 
