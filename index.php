@@ -148,7 +148,7 @@ function link_richmenu($userID,$richID) {
 	if ($err) {
 	  error_log("cURL Error #:" . $err);
 	} else {
-	  error_log("Message :: ".$messageText[0]);
+	  error_log("Message :: ".$response);
 	}
 
 	return $response;
