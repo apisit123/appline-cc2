@@ -132,6 +132,10 @@ function link_richmenu($userID,$richID) {
 
 	curl_setopt_array($curl, array(
 	  CURLOPT_URL => "https://api.line.me/v2/bot/user/".$userID."/richmenu/".$richID,
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => "",
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 30,
 	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	  CURLOPT_CUSTOMREQUEST => "POST",
 	  CURLOPT_HTTPHEADER => array(
@@ -170,6 +174,10 @@ function post_line($userID, $msgtype, $data_post){
     
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.line.me/v2/bot/message/push",
+      CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => "",
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 30,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => "POST",
       CURLOPT_POSTFIELDS =>  $data_post,
