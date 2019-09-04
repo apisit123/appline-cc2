@@ -2,16 +2,43 @@
 
 require_once 'vendor/autoload.php';
 
-use LINE\LINEBot\Event\Parser\EventRequestParser;
+use LINE\LINEBot;
 use LINE\LINEBot\HTTPClient;
+use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use LINE\LINEBot\Event;
+use LINE\LINEBot\Event\BaseEvent;
+use LINE\LINEBot\Event\MessageEvent;
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
-use LINE\LINEBot\Response;
-use LINE\LINEBot\SignatureValidator;
-use LINE\LINEBot\RichMenuBuilder;
+use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
+use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
+use LINE\LINEBot\MessageBuilder\LocationMessageBuilder;
+use LINE\LINEBot\MessageBuilder\AudioMessageBuilder;
+use LINE\LINEBot\MessageBuilder\VideoMessageBuilder;
+use LINE\LINEBot\ImagemapActionBuilder;
+use LINE\LINEBot\ImagemapActionBuilder\AreaBuilder;
+use LINE\LINEBot\ImagemapActionBuilder\ImagemapMessageActionBuilder ;
+use LINE\LINEBot\ImagemapActionBuilder\ImagemapUriActionBuilder;
+use LINE\LINEBot\MessageBuilder\Imagemap\BaseSizeBuilder;
+use LINE\LINEBot\MessageBuilder\ImagemapMessageBuilder;
+use LINE\LINEBot\MessageBuilder\MultiMessageBuilder;
+use LINE\LINEBot\TemplateActionBuilder;
+use LINE\LINEBot\TemplateActionBuilder\DatetimePickerTemplateActionBuilder;
+use LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder;
+use LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder;
+use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateMessageBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselTemplateBuilder;
+use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuilder;
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient("Bearer a9Kj4XxQXy/VyXbSB804kWHqZMGZ2ZZbrrMpTFlm7hd9ZdQ37U1cqC7LBYkJrXQR1Gis4bXMNQb/L0sYfkRV897EmhEq/Ir2P4SSNTx2tBV87aAouxozywtwVvi2wBXRzmv8KMsfMuxnNBwfrigDyAdB04t89/1O/w1cDnyilFU=");
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => "d77dbc05ab9394717939433eb2e8f7e3"]);
+
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
 $richmenu = array("richmenu-3d2c1619e7bc6e109d68fc5fb6d1c3a1","richmenu-f9ad5af743a6c61b04b04ee47d9c1936","richmenu-548104a047e4b13410a5d102610522ce", "richmenu-2b5232638184e538e0c48d1232a11f9e");
@@ -35,6 +62,7 @@ foreach ($events as $event) {
 	
 	if (($event instanceof \LINE\LINEBot\Event\FollowEvent)) {
 		$_uid = $event->getUserId();
+		error_log($_uid, 3, "errors.log");
 		$response = $bot->linkRichMenu($_uid, $richmenu[0]);
 		break;
 	}
