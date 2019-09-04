@@ -41,6 +41,9 @@ foreach ($events as $event) {
 
 	// Message Event = TextMessage
 	if (($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
+
+		$_uid = $event->getUserId();
+		
 		$buff=strtolower(trim($event->getText()));
         
         $messageText = explode("-",$buff);
@@ -60,12 +63,11 @@ foreach ($events as $event) {
         link_richmenu($_uid,$richmenu[0]);
 				image_map_promo($_uid);
 				$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder();
-			break;
+				break;
 
-      case "test" :
-        //$data = get_promotion($_uid);
-        $outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("ทดสอบ");
-      break;
+      		case "test" :
+        		$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("ทดสอบ");
+      			break;
 			
 			default:
 			    $outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("default");
@@ -124,7 +126,7 @@ function post_line($data_post){
       CURLOPT_CUSTOMREQUEST => "POST",
       CURLOPT_POSTFIELDS =>  $data_post,
       CURLOPT_HTTPHEADER => array(
-        "Authorization: Bearer XuWMr1KtT16go8TtsiDaLBVIRla/IX6JagScETaCaAt7wApMNWb85YDoG19amCG6c6ttH/iQzmhR5gMFQL29qTIDVIjbpJB0VkEsbVhfdnwGM9QkhoP5gKT64yG4lem5jFN9K5yKAYAagLOQybaLWAdB04t89/1O/w1cDnyilFU=",
+        "Authorization: ".LINE_MESSAGE_ACCESS_TOKEN,
         "Cache-Control: no-cache",
         "Content-Type: application/json",
         "Postman-Token: 9c1e2414-9a6d-4022-9bc2-fa308f64584d"
