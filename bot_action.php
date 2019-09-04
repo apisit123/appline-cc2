@@ -290,6 +290,11 @@ if(!is_null($events)){
             case 'text':  // ถ้าเป็นข้อความ
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
+                        case "update" :
+                          $respRichMenu = $bot->linkRichMenu($userId,"richmenu-14e79f8f616d100c872e6574e3e7b951");
+                          $moreResult = $respRichMenu->getRawBody();
+                          $result = json_decode($respRichMenu->getRawBody(),TRUE);
+                          break;
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
                             $paramRichMenu = explode(">",$userMessage);
                             if(!isset($paramRichMenu) || !is_array($paramRichMenu) || count($paramRichMenu)<3){
