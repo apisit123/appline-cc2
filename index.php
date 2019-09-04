@@ -160,8 +160,8 @@ function link_richmenu($userID,$richID) {
 function post_line($userID, $msgtype, $data_post){
 
 	$myObj->to = $userID;
-	$myObj->messages->type = $msgtype;
-	$myObj->messages->text = $data_post;
+	$myObj->messages = array('type' => $msgtype,
+		'text' => $data_post);
 
 	$data_post = json_encode($myObj);
 
