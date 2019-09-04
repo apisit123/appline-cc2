@@ -2,8 +2,14 @@
 
 require_once 'vendor/autoload.php';
 
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient("Bearer a9Kj4XxQXy/VyXbSB804kWHqZMGZ2ZZbrrMpTFlm7hd9ZdQ37U1cqC7LBYkJrXQR1Gis4bXMNQb/L0sYfkRV897EmhEq/Ir2P4SSNTx2tBV87aAouxozywtwVvi2wBXRzmv8KMsfMuxnNBwfrigDyAdB04t89/1O/w1cDnyilFU=");
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => "d77dbc05ab9394717939433eb2e8f7e3"]);
+/// การตั้งค่าเกี่ยวกับ bot ใน LINE Messaging API
+define('LINE_MESSAGE_CHANNEL_ID','1636539927');
+define('LINE_MESSAGE_CHANNEL_SECRET','d77dbc05ab9394717939433eb2e8f7e3');
+define('LINE_MESSAGE_ACCESS_TOKEN','Bearer a9Kj4XxQXy/VyXbSB804kWHqZMGZ2ZZbrrMpTFlm7hd9ZdQ37U1cqC7LBYkJrXQR1Gis4bXMNQb/L0sYfkRV897EmhEq/Ir2P4SSNTx2tBV87aAouxozywtwVvi2wBXRzmv8KMsfMuxnNBwfrigDyAdB04t89/1O/w1cDnyilFU=');
+
+
+$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
+$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => LINE_MESSAGE_CHANNEL_SECRET]);
 
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
