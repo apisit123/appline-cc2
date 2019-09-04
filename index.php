@@ -51,7 +51,7 @@ use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
 /// การตั้งค่าเกี่ยวกับ bot ใน LINE Messaging API
 define('LINE_MESSAGE_CHANNEL_ID','1648723890');
 define('LINE_MESSAGE_CHANNEL_SECRET','1e61a9805bde296ff2b3b2fbbe302220');
-define('LINE_MESSAGE_ACCESS_TOKEN','Bearer ZJtS+TuOmS9FWEHc1Idm7RF2dXjszDOOWHDAUcx2LLMyQP9DStP4PUXeoQjX6gtdYRy9hBD5T5opbbeHMb5zjU3PonwLzSKCbkJ2CQ5scC7uTmojN2I38anReeBjmzdcKGl6sq5758gXHdB21DgeHlGUYhWQfeY8sLGRXgo3xvw=');
+define('LINE_MESSAGE_ACCESS_TOKEN','ZJtS+TuOmS9FWEHc1Idm7RF2dXjszDOOWHDAUcx2LLMyQP9DStP4PUXeoQjX6gtdYRy9hBD5T5opbbeHMb5zjU3PonwLzSKCbkJ2CQ5scC7uTmojN2I38anReeBjmzdcKGl6sq5758gXHdB21DgeHlGUYhWQfeY8sLGRXgo3xvw=');
 
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
@@ -138,7 +138,7 @@ function link_richmenu($userID,$richID) {
 	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	  CURLOPT_CUSTOMREQUEST => "POST",
 	  CURLOPT_HTTPHEADER => array(
-	    "Authorization: ".LINE_MESSAGE_ACCESS_TOKEN
+	    "Authorization: Bearer ".LINE_MESSAGE_ACCESS_TOKEN
 	  ),
 	));
 
@@ -177,7 +177,7 @@ function post_line($userID, $msgtype, $data_post){
       CURLOPT_CUSTOMREQUEST => "POST",
       CURLOPT_POSTFIELDS =>  $data_post,
       CURLOPT_HTTPHEADER => array(
-        "Authorization: ".LINE_MESSAGE_ACCESS_TOKEN
+        "Authorization: Bearer ".LINE_MESSAGE_ACCESS_TOKEN
       ),
     ));
     
