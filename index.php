@@ -43,7 +43,7 @@ foreach ($events as $event) {
 	if (($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage)) {
 
 		$_uid = $event->getUserId();
-		
+
 		$buff=strtolower(trim($event->getText()));
         
         $messageText = explode("-",$buff);
@@ -60,9 +60,10 @@ foreach ($events as $event) {
 			case "promotion" :
 				//$data = get_promotion($_uid);
                 		//post_line($data);
-        link_richmenu($_uid,$richmenu[0]);
-				image_map_promo($_uid);
-				$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder();
+
+				error_log("promo process");
+        		$response = $bot->linkRichMenu($_uid, $richmenu[0]);
+				$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($response);
 				break;
 
       		case "test" :
