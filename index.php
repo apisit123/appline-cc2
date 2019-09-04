@@ -122,7 +122,7 @@ foreach ($events as $event) {
 				break;
 		}
 		
-		$response = $bot->replyMessage($event->getReplyToken(), "xzczxc");
+		$response = $bot->replyMessage($event->getReplyToken(), $outputText);
 
 	}
 }
