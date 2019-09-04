@@ -59,7 +59,7 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => LINE_MESSAGE_CHANNEL_S
 
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
-$richmenu = array("richmenu-3d2c1619e7bc6e109d68fc5fb6d1c3a1","richmenu-f9ad5af743a6c61b04b04ee47d9c1936","richmenu-548104a047e4b13410a5d102610522ce", "richmenu-2b5232638184e538e0c48d1232a11f9e");
+$richmenu = array("richmenu-14e79f8f616d100c872e6574e3e7b951");
 $events = '';
 
 try {
