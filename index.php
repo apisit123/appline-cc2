@@ -96,10 +96,6 @@ foreach ($events as $event) {
         
         error_log("Message :: ".$messageText[0]);
         
-        
-		$dir = dirname(__FILE__)."/database/".(string)$_uid.".csv";
-		$file =  $_uid.".txt";
-		//$link = "https://thawing-basin-91531.herokuapp.com/";
 
 
 		switch ($messageText[0]) {
@@ -113,7 +109,9 @@ foreach ($events as $event) {
 				break;
 
       		case "test" :
+      			post_line($_uid, "text", "test text");
         		$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("ทดสอบ");
+        		error_log($outputText);
       			break;
 			
 			default:
@@ -122,6 +120,7 @@ foreach ($events as $event) {
 		}
 		
 		$response = $bot->replyMessage($event->getReplyToken(), $outputText);
+		error_log($response);
 	}
 }
   
@@ -157,16 +156,20 @@ function link_richmenu($userID,$richID) {
 
 
 
-function post_line($data_post){
+function post_line($userID, $msgtype, $data_post){
+
+	$myObj->to = $userID;
+	$myObj->messages->type = $msgtype;
+	$myObj->messages->text = $data_post;
+
+	$data_post = json_encode($myObj);
+
+	error_log($data_post)
 
     $curl = curl_init();
     
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.line.me/v2/bot/message/push",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => "",
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 30,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => "POST",
       CURLOPT_POSTFIELDS =>  $data_post,
