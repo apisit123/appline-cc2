@@ -49,6 +49,14 @@ use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
  
 // ส่วนของการทำงาน
 if(!is_null($events)){
+
+  $response = $bot->getProfile($userId);
+  if ($response->isSucceeded()) {
+      $profile = $response->getJSONDecodedBody();
+      // echo $profile['displayName'];
+      // echo $profile['pictureUrl'];
+      // echo $profile['statusMessage'];
+  }
  
     // ถ้า bot ถูก invite เพื่อเข้า Join Event ให้ bot ส่งข้อความใน GROUP ว่าเข้าร่วม GROUP แล้ว
     if(!is_null($eventJoin)){
@@ -63,7 +71,7 @@ if(!is_null($events)){
      
     // ถ้า bot ถูกเพื่มเป้นเพื่อน หรือถูกติดตาม หรือ ยกเลิกการ บล็อก
     if(!is_null($eventFollow)){
-        $textReplyMessage = "สวัสดีค่ะ คุณ {$userId} \n
+        $textReplyMessage = "สวัสดีค่ะ คุณ{$profile['displayName']} \n
 ขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ \n
 เราจะทำให้การสั่งอาหารของคุณ ไม่ต้องรอนานอีกต่อไป";        
         $replyData = new TextMessageBuilder($textReplyMessage);                 
