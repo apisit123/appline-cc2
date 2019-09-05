@@ -79,7 +79,8 @@ if(!is_null($events)){
       $replyData = new MultiMessageBuilder();
       $replyData -> add(new TextMessageBuilder($greetMSG))
                  -> add(new StickerMessageBuilder(1, 4))
-                 -> add(new VideoMessageBuilder("https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon.mp4", "https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon_Moment.jpg"));
+                 -> add(new VideoMessageBuilder("https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon.mp4", "https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon_Moment.jpg"))
+                 -> add(new TextMessageBuilder("สำหรับขั้นตอนการสั่งสินค้าผ่าน Line Order\nสามารถดูตาม video ด้านบนได้เลยจ้าาา \u{10002E}"));
                 
     }
      
