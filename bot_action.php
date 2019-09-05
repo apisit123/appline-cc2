@@ -298,8 +298,20 @@ if(!is_null($events)){
                           }else{
                             $textReplyMessage = "ไม่สามารถอัพเดทระบบได้ในขณะนี้ โปรดติดต่อผู้พัฒนาระบบ";
                           }
-                          $replyData = new TextMessageBuilder(๓textReplyMessage);  
+                          $replyData = new TextMessageBuilder($textReplyMessage);  
                           break;
+
+                        case "อัพเดท" :
+                          $respRichMenu = $bot->linkRichMenu($userId,"richmenu-14e79f8f616d100c872e6574e3e7b951");
+                          error_log(json_encode($respRichMenu));
+                          if(json_encode($respRichMenu) == "{}"){
+                            $textReplyMessage = "อัพเดทระบบเรียบร้อยแล้ว";
+                          }else{
+                            $textReplyMessage = "ไม่สามารถอัพเดทระบบได้ในขณะนี้ โปรดติดต่อผู้พัฒนาระบบ";
+                          }
+                          $replyData = new TextMessageBuilder($textReplyMessage);  
+                          break;
+
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
                             $paramRichMenu = explode(">",$userMessage);
                             if(!isset($paramRichMenu) || !is_array($paramRichMenu) || count($paramRichMenu)<3){
