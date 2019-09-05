@@ -70,7 +70,9 @@ if(!is_null($events)){
      
     // ถ้า bot ถูกเพื่มเป้นเพื่อน หรือถูกติดตาม หรือ ยกเลิกการ บล็อก
     if(!is_null($eventFollow)){
-        $textReplyMessage = "สวัสดีค่ะ คุณ{$userData['displayName']}\nขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ\nเราจะทำให้การสั่งอาหารของคุณ ไม่ต้องรอนานอีกต่อไป";        
+        $textReplyMessage = "สวัสดีค่ะ คุณ {$userData} \n
+ขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ \n
+เราจะทำให้การสั่งอาหารของคุณ ไม่ต้องรอนานอีกต่อไป";        
         $replyData = new TextMessageBuilder($textReplyMessage);                 
     }
      
