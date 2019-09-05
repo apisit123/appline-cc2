@@ -298,7 +298,7 @@ if(!is_null($events)){
                           }else{
                             $textReplyMessage = "ไม่สามารถอัพเดทระบบได้ในขณะนี้ โปรดติดต่อผู้พัฒนาระบบ";
                           }
-                          $replyData = new TextMessageBuilder(json_encode($respRichMenu));  
+                          $replyData = new TextMessageBuilder(๓textReplyMessage);  
                           break;
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
                             $paramRichMenu = explode(">",$userMessage);
