@@ -295,7 +295,7 @@ if(!is_null($events)){
                           $moreResult = $respRichMenu->getRawBody();
                           $result = json_decode($respRichMenu->getRawBody(),TRUE);
                           $replyData = new TextMessageBuilder($result);   
-                          error_log($respRichMenu);
+                          error_log(strval($respRichMenu));
                           break;
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
                             $paramRichMenu = explode(">",$userMessage);
