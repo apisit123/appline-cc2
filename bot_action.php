@@ -292,10 +292,7 @@ if(!is_null($events)){
                 switch ($userMessage) {
                         case "update" :
                           $respRichMenu = $bot->linkRichMenu($userId,"richmenu-14e79f8f616d100c872e6574e3e7b951");
-                          $moreResult = $respRichMenu->getRawBody();
-                          $result = json_decode($respRichMenu->getRawBody(),TRUE);
-                          $replyData = new TextMessageBuilder($result);   
-                          error_log(strval($respRichMenu));
+                          error_log(json_encode($respRichMenu));
                           break;
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
                             $paramRichMenu = explode(">",$userMessage);
