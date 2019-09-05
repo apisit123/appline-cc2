@@ -76,12 +76,10 @@ if(!is_null($events)){
 ขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ \u{100079}\n
 เราจะทำให้การสั่งอาหารของคุณ ไม่ต้องรอนานอีกต่อไป \u{100037}";
 
-      $textReplyMessage = new MultiMessageBuilder();
-      $textReplyMessage -> add(new TextMessageBuilder($greetMSG))
-                              -> add(new StickerMessageBuilder(1, 4));
-
-           
-        $replyData = new TextMessageBuilder($textReplyMessage);                 
+      $replyData = new MultiMessageBuilder();
+      $replyData -> add(new TextMessageBuilder($greetMSG))
+                 -> add(new StickerMessageBuilder(1, 4));
+                
     }
      
     // ถ้า bot ถูกบล็อก หรือเลิกติดตาม จะไม่สามารถส่งข้อความกลับได้ เนื่องจากไม่มี replyToken
