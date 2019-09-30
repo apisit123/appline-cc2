@@ -632,7 +632,8 @@ if(!is_null($events)){
                      
                 }else{
                     // กรณีทดสอบเงื่อนไขอื่นๆ ผู้ใช้ไม่ได้ส่งเป็นข้อความ
-                    $textReplyMessage = 'สวัสดีครับ คุณ '.$typeMessage;         
+                    // $textReplyMessage = 'สวัสดีครับ คุณ '.$typeMessage;   
+                    $textReplyMessage = '';      
                     $replyData = new TextMessageBuilder($textReplyMessage);         
                 }
                 break;  
