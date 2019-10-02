@@ -72,6 +72,8 @@ if(!is_null($events)){
     // ถ้า bot ถูกเพื่มเป้นเพื่อน หรือถูกติดตาม หรือ ยกเลิกการ บล็อก
     if(!is_null($eventFollow)){
 
+      $respRichMenu = $bot->linkRichMenu($userId,"richmenu-310957e26caae3a4c82f2c0e93514c4a");
+
       $greetMSG = "สวัสดีค่ะ คุณ{$profile['displayName']} \n
 ขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ \u{100079}\n
 เราจะทำให้การสั่งอาหารของคุณ ไม่ต้องรอนานอีกต่อไป \u{100037}";
