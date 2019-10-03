@@ -15,6 +15,7 @@ use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
 use LINE\LINEBot\MessageBuilder\LocationMessageBuilder;
 use LINE\LINEBot\MessageBuilder\AudioMessageBuilder;
 use LINE\LINEBot\MessageBuilder\VideoMessageBuilder;
+use LINE\LINEBot\MessageBuilder\FlexMessageBuilder;
 use LINE\LINEBot\ImagemapActionBuilder;
 use LINE\LINEBot\ImagemapActionBuilder\AreaBuilder;
 use LINE\LINEBot\ImagemapActionBuilder\ImagemapMessageActionBuilder ;
@@ -331,6 +332,59 @@ if(!is_null($events)){
                           $replyData = new TextMessageBuilder($textReplyMessage);  
                           break;
 
+
+                        case "promo" :
+
+                          $textReplyMessage = new CarouselContainerBuilder(
+                              array(
+                                  new BubbleContainerBuilder(
+                                      "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
+                                      NULL,NULL,
+                                      new BoxComponentBuilder(
+                                          "horizontal",
+                                          array(
+                                              new TextComponentBuilder("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
+                                              do eiusmod tempor incididunt ut labore et dolore magna aliqua.",NULL,NULL,NULL,NULL,NULL,true)
+                                          )
+                                      ),
+                                      new BoxComponentBuilder(
+                                          "horizontal",
+                                          array(
+                                              new ButtonComponentBuilder(
+                                                  new UriTemplateActionBuilder("GO","http://niik.in"),
+                                                  NULL,NULL,NULL,"primary"
+                                              )
+                                          )
+                                      )
+                                  ), // end bubble 1
+                                  new BubbleContainerBuilder(
+                                      "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
+                                      NULL,NULL,
+                                      new BoxComponentBuilder(
+                                          "horizontal",
+                                          array(
+                                              new TextComponentBuilder("Hello, World!",NULL,NULL,NULL,NULL,NULL,true)
+                                          )
+                                      ),
+                                      new BoxComponentBuilder(
+                                          "horizontal",
+                                          array(
+                                              new ButtonComponentBuilder(
+                                                  new UriTemplateActionBuilder("GO","http://niik.in"),
+                                                  NULL,NULL,NULL,"primary"
+                                              )
+                                          )
+                                      )
+                                  ) // end bubble 2       
+                              )
+                          );
+
+                          $replyData = new FlexMessageBuilder("Flex",$textReplyMessage);
+                              
+                          break;
+
+
+
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
                             $paramRichMenu = explode(">",$userMessage);
                             if(!isset($paramRichMenu) || !is_array($paramRichMenu) || count($paramRichMenu)<3){
@@ -433,121 +487,7 @@ if(!is_null($events)){
                             $textReplyMessage = " การสร้าง Rich Menu ".$respRichMenu->getRawBody()." Res = ".json_encode($dataArr);
                             $replyData = new TextMessageBuilder($textReplyMessage);                                     
                             break;                              
-                        case "gr-": // ส่วนจัดการ Rich Menu ส่วนที่ 1
-                            /// หา Rich Menu ที่เป็นเมนูหลัก หรือ Default ถ้ามี
-                            $respRichMenu = $httpClient->get("https://api.line.me/v2/bot/user/all/richmenu");
-                            $result = json_decode($respRichMenu->getRawBody(),TRUE);     
-                            $defaultRichMenu = (isset($result['richMenuId']))?$result['richMenuId']:NULL;
-     
-                            // รายการ Rich Menu ทั้งหมด
-                            $respRichMenu = $bot->getRichMenuList();
-                            $result = json_decode($respRichMenu->getRawBody(),TRUE);                                 
-                            // สร้างตัวแปร สำหรับเก็บ rich menu แต่ละรายการไว้ในแต่ละคอลัมน์
-                            $columnTemplate = array();
-                            foreach($result['richmenus'] as $itemRichMenu){
-                                $_txtShow = ($itemRichMenu['richMenuId']==$defaultRichMenu)?"ยกเลิก":"กำหนดเป็น";
-                                $_action = ($itemRichMenu['richMenuId']==$defaultRichMenu)?"c_default_richmenu":"s_default_richmenu";
-                                $imgRichLayout = substr(str_replace('Rich Menu ','',$itemRichMenu['name']),0,1);
-                                array_push($columnTemplate, 
-                                    new CarouselColumnTemplateBuilder(
-                                            $itemRichMenu['name'], // ชื่อ rich menu
-                                            'เลือกการจัดการ',
-                                            '[เปลี่ยนส่วนนี้เป็น path url ของเรา]rich-menu/rich-menu-pattern-0'.$imgRichLayout.'.png', // ไม่แสดงรูป มีมี url รูป
-                                            // ตัวอย่าง 'https://www.mywebsite.com/linebot/rich-menu/rich-menu-pattern-0'.$imgRichLayout.'.png', 
-                                            array(                                  
-                                                new PostbackTemplateActionBuilder(
-                                                    $_txtShow.' Default', // ข้อความแสดงในปุ่ม
-                                                    http_build_query(array(
-                                                        'action'=>$_action,          
-                                                        'richMenuName'=>$itemRichMenu['name'],                    
-                                                        'richMenuId'=>$itemRichMenu['richMenuId']
-                                                    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                                    'กำหนด Default Rich Menu'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                                                ),          
-                                                new PostbackTemplateActionBuilder(
-                                                    'แสดงที่ Default', // ข้อความแสดงในปุ่ม
-                                                    http_build_query(array(
-                                                        'action'=>'g_default_richmenu',      
-                                                        'richMenuName'=>$itemRichMenu['name'],            
-                                                        'richMenuId'=>$itemRichMenu['richMenuId']
-                                                    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                                    'แสดง Default Rich Menu'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                                                ),                                                                                          
-                                                new PostbackTemplateActionBuilder(
-                                                    'อัพโหลดรูป Rich Menu นี้', // ข้อความแสดงในปุ่ม
-                                                    http_build_query(array(
-                                                        'action'=>'upload_richmenu',         
-                                                        'richMenuName'=>$itemRichMenu['name'],                    
-                                                        'richMenuId'=>$itemRichMenu['richMenuId']
-                                                    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                                    'อัพโหลดรูป Rich Menu'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                                                )                       
-                                            )       
-                                    )   // end CarouselColumnTemplateBuilder            
-                                ); // end array push function
-                            }   // end foreach                      
-                             
-                            // ใช้ Carousel Template วนลูปแสดงรายการ rich menu ที่ได้สร้างไว้
-                            $replyData = new TemplateMessageBuilder('Carousel',
-                                new CarouselTemplateBuilder(
-                                    $columnTemplate
-                                )
-                            );                                          
-                            break;      
-                        case "gr2-": // ส่วนจัดการ Rich Menu ส่วนที่ 2
-                            $respRichMenu = $bot->getRichMenuList();
-                            $result = json_decode($respRichMenu->getRawBody(),TRUE); 
-                                 
-                            // สร้างตัวแปร สำหรับเก็บ rich menu แต่ละรายการไว้ในแต่ละคอลัมน์
-                            $columnTemplate = array();
-                            foreach($result['richmenus'] as $itemRichMenu){
-                                $imgRichLayout = substr(str_replace('Rich Menu ','',$itemRichMenu['name']),0,1);                                
-                                array_push($columnTemplate, 
-                                    new CarouselColumnTemplateBuilder(
-                                            $itemRichMenu['name'], // ชื่อ rich menu
-                                            'เลือกการจัดการ',
-                                            '[เปลี่ยนส่วนนี้เป็น path url ของเรา]rich-menu/rich-menu-pattern-0'.$imgRichLayout.'.png', // ไม่แสดงรูป มีมี url รูป
-                                            // ตัวอย่าง 'https://www.mywebsite.com/linebot/rich-menu/rich-menu-pattern-0'.$imgRichLayout.'.png', 
-                                            array(
-                                                new PostbackTemplateActionBuilder(
-                                                    'รายละเอียด Rich Menu', // ข้อความแสดงในปุ่ม
-                                                    http_build_query(array(
-                                                        'action'=>'get_richmenu',        
-                                                        'richMenuName'=>$itemRichMenu['name'],                        
-                                                        'richMenuId'=>$itemRichMenu['richMenuId']
-                                                    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                                    'ข้อมูล Rich Menu'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                                                ),                                                                                                                              
-                                                new PostbackTemplateActionBuilder(
-                                                    'ลบ Rich Menu นี้', // ข้อความแสดงในปุ่ม
-                                                    http_build_query(array(
-                                                        'action'=>'delete_richmenu',         
-                                                        'richMenuName'=>$itemRichMenu['name'],                    
-                                                        'richMenuId'=>$itemRichMenu['richMenuId']
-                                                    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                                    'ลบ Rich Menu'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                                                ),              
-                                                new PostbackTemplateActionBuilder(
-                                                    'อัพโหลดรูป Rich Menu นี้', // ข้อความแสดงในปุ่ม
-                                                    http_build_query(array(
-                                                        'action'=>'upload_richmenu',         
-                                                        'richMenuName'=>$itemRichMenu['name'],                    
-                                                        'richMenuId'=>$itemRichMenu['richMenuId']
-                                                    )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                                    'อัพโหลดรูป Rich Menu'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                                                )                       
-                                            )       
-                                    )   // end CarouselColumnTemplateBuilder            
-                                ); // end array push function
-                            }   // end foreach                      
-                             
-                            // ใช้ Carousel Template วนลูปแสดงรายการ rich menu ที่ได้สร้างไว้
-                            $replyData = new TemplateMessageBuilder('Carousel',
-                                new CarouselTemplateBuilder(
-                                    $columnTemplate
-                                )
-                            );                                          
-                            break;                                                              
+                                                                                      
                         case "ot":
                             // ทำอื่นๆ 
                             break;
