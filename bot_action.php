@@ -72,7 +72,7 @@ if(!is_null($events)){
     // ถ้า bot ถูกเพื่มเป้นเพื่อน หรือถูกติดตาม หรือ ยกเลิกการ บล็อก
     if(!is_null($eventFollow)){
 
-      $respRichMenu = $bot->linkRichMenu($userId,"richmenu-310957e26caae3a4c82f2c0e93514c4a");
+      $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
 
       $greetMSG = "สวัสดีค่ะ คุณ{$profile['displayName']} \n
 ขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ \u{100079}\n
@@ -310,7 +310,7 @@ if(!is_null($events)){
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
                         case "update" :
-                          $respRichMenu = $bot->linkRichMenu($userId,"richmenu-310957e26caae3a4c82f2c0e93514c4a");
+                          $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
                           error_log(json_encode($respRichMenu));
                           if(json_encode($respRichMenu) == "{}"){
                             $textReplyMessage = "อัพเดทระบบเรียบร้อยแล้ว";
@@ -321,7 +321,7 @@ if(!is_null($events)){
                           break;
 
                         case "อัพเดท" :
-                          $respRichMenu = $bot->linkRichMenu($userId,"richmenu-310957e26caae3a4c82f2c0e93514c4a");
+                          $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
                           error_log(json_encode($respRichMenu));
                           if(json_encode($respRichMenu) == "{}"){
                             $textReplyMessage = "อัพเดทระบบเรียบร้อยแล้ว";
