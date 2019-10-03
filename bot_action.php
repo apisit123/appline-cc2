@@ -333,56 +333,46 @@ if(!is_null($events)){
                           break;
 
 
-                        case "promo" :
+                        case "promotion" :
 
-                          $textReplyMessage = new CarouselContainerBuilder(
-                              array(
-                                  new BubbleContainerBuilder(
-                                      "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
-                                      NULL,NULL,
-                                      new BoxComponentBuilder(
-                                          "horizontal",
-                                          array(
-                                              new TextComponentBuilder("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-                                              do eiusmod tempor incididunt ut labore et dolore magna aliqua.",NULL,NULL,NULL,NULL,NULL,true)
-                                          )
-                                      ),
-                                      new BoxComponentBuilder(
-                                          "horizontal",
-                                          array(
-                                              new ButtonComponentBuilder(
-                                                  new UriTemplateActionBuilder("GO","http://niik.in"),
-                                                  NULL,NULL,NULL,"primary"
-                                              )
-                                          )
-                                      )
-                                  ), // end bubble 1
-                                  new BubbleContainerBuilder(
-                                      "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
-                                      NULL,NULL,
-                                      new BoxComponentBuilder(
-                                          "horizontal",
-                                          array(
-                                              new TextComponentBuilder("Hello, World!",NULL,NULL,NULL,NULL,NULL,true)
-                                          )
-                                      ),
-                                      new BoxComponentBuilder(
-                                          "horizontal",
-                                          array(
-                                              new ButtonComponentBuilder(
-                                                  new UriTemplateActionBuilder("GO","http://niik.in"),
-                                                  NULL,NULL,NULL,"primary"
-                                              )
-                                          )
-                                      )
-                                  ) // end bubble 2       
-                              )
-                          );
+                          $textReplyMessage = `{
+    "type": "flex",
+    "altText": "Flex Message",
+    "contents": {
+    "type": "carousel",
+    "contents": [
+      {
+        "type": "bubble",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://storage.googleapis.com/toofast-bucket/promote/too%20fast%20order%20%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%97.png",
+              "size": "full",
+              "aspectMode": "cover",
+              "aspectRatio": "2:4",
+              "gravity": "top"
+            }
+          ],
+          "paddingAll": "0px"
+        }
+      }
+    ]
+  }
+  }`;
+                          $replyData = new TextMessageBuilder($textReplyMessage);
 
-                          $replyData = new FlexMessageBuilder("Flex",$textReplyMessage);
-                              
                           break;
 
+                        case "history" :
+
+                          break;
+
+                        case "queue" :
+
+                          break;
 
 
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
