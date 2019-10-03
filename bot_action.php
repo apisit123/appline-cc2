@@ -335,34 +335,34 @@ if(!is_null($events)){
 
                         case "promotion" :
 
-                          $textReplyMessage = `{
-    "type": "flex",
-    "altText": "Flex Message",
-    "contents": {
-    "type": "carousel",
-    "contents": [
-      {
-        "type": "bubble",
-        "body": {
-          "type": "box",
-          "layout": "vertical",
-          "contents": [
-            {
-              "type": "image",
-              "url": "https://storage.googleapis.com/toofast-bucket/promote/too%20fast%20order%20%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%97.png",
-              "size": "full",
-              "aspectMode": "cover",
-              "aspectRatio": "2:4",
-              "gravity": "top"
-            }
-          ],
-          "paddingAll": "0px"
-        }
-      }
-    ]
-  }
-  }`;
-                          $replyData = new TextMessageBuilder($textReplyMessage);
+                          $replyData = `{
+                            "type": "flex",
+                            "altText": "Flex Message",
+                            "contents": {
+                            "type": "carousel",
+                            "contents": [
+                              {
+                                "type": "bubble",
+                                "body": {
+                                  "type": "box",
+                                  "layout": "vertical",
+                                  "contents": [
+                                    {
+                                      "type": "image",
+                                      "url": "https://storage.googleapis.com/toofast-bucket/promote/too%20fast%20order%20%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%97.png",
+                                      "size": "full",
+                                      "aspectMode": "cover",
+                                      "aspectRatio": "2:4",
+                                      "gravity": "top"
+                                    }
+                                  ],
+                                  "paddingAll": "0px"
+                                }
+                              }
+                            ]
+                          }
+                          }`;
+
 
                           break;
 
