@@ -335,7 +335,7 @@ if(!is_null($events)){
 
                         case "promotion" :
 
-                          $img_url = "https://admin-official.line.me/13905445/contents/show/s/352911432.jpg?v=1458740363";
+                          $img_url = "https://storage.googleapis.com/toofast-bucket/promote/too%20fast%20order%20%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%97.png";
                           $replyData = new LINE\LINEBot\MessageBuilder\ImageMessageBuilder($img_url, $img_url);
 
                           break;
