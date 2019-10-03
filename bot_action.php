@@ -602,7 +602,7 @@ if(!is_null($events)){
                             $replyData = new TextMessageBuilder($textReplyMessage,$quickReply);                             
                             break;                                                                         
                     default:
-                        $respRichMenu = $bot->linkRichMenu($userId,"richmenu-310957e26caae3a4c82f2c0e93514c4a");
+                        $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
                         $url = "https://bots.dialogflow.com/line/80a5e0d6-016f-46f5-b8b8-0302c02896b3/webhook";
                         $headers = getallheaders();
             //          file_put_contents('headers.txt',json_encode($headers, JSON_PRETTY_PRINT));          
