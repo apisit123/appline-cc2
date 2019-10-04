@@ -485,12 +485,12 @@ if(!is_null($events)){
                                     "vertical",
                                     array(
                                         // text, flex, margin, size, align. gravity, warp, maxline, weight, color, action
-                                        new TextComponentBuilder("Queue SIAM",NULL,NULL,"xxl","center","center")
+                                        new TextComponentBuilder("Queue SIAM",NULL,NULL,"xxl","center","center","#ffffff")
                                     )
                                 ),
-                                new ImageComponentBuilder(
-                                  "https://appline.cctfts.com/tfts/img/toofast_order_logo.jpg",NULL,NULL,NULL,NULL,"full","20:13","cover"),
-
+                                // new ImageComponentBuilder(
+                                //   "https://appline.cctfts.com/tfts/img/toofast_order_logo.jpg",NULL,NULL,NULL,NULL,"full","20:13","cover"),
+                                NULL,
                                 new BoxComponentBuilder(
                                     "vertical",
                                     array(
@@ -503,7 +503,12 @@ if(!is_null($events)){
                                         new TextComponentBuilder("This is Footer")
                                     )
                                 ),
-                                NULL
+                                new BubbleStylesBuilder( // style ทั้งหมดของ bubble
+                                    new BlockStyleBuilder("#27ACB2"),  // style สำหรับ header block
+                                    // new BlockStyleBuilder("#EFE4B0"), // style สำหรับ hero block
+                                    // new BlockStyleBuilder("#B5E61D"), // style สำหรับ body block
+                                    // new BlockStyleBuilder("#FFF200") // style สำหรับ footer block
+                                )
                             );
 
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
