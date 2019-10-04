@@ -504,7 +504,7 @@ if(!is_null($events)){
                                     )
                                 ),
                                 new BubbleStylesBuilder( // style ทั้งหมดของ bubble
-                                    new BlockStyleBuilder("#27ACB2"),  // style สำหรับ header block
+                                    new BlockStyleBuilder("#27ACB2")  // style สำหรับ header block
                                     // new BlockStyleBuilder("#EFE4B0"), // style สำหรับ hero block
                                     // new BlockStyleBuilder("#B5E61D"), // style สำหรับ body block
                                     // new BlockStyleBuilder("#FFF200") // style สำหรับ footer block
