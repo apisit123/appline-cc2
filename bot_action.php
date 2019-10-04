@@ -485,7 +485,7 @@ if(!is_null($events)){
                                     "vertical",
                                     array(
                                         // text, flex, margin, size, align. gravity, warp, maxline, weight, color, action
-                                        new TextComponentBuilder("Queue SIAM"),NULL,NILL,"xxl","center","center",NULL,NULL,NULL,NULL,NULL
+                                        new TextComponentBuilder("Queue SIAM",NULL,NILL,"xxl","center","center")
                                     )
                                 ),
                                 NULL,
