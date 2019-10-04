@@ -410,16 +410,90 @@ if(!is_null($events)){
 
                           break;
 
+                         /**     
+                            public function __construct(
+                                $text,
+                                $flex = null,
+                                $margin = null,
+                                $size = null,
+                                $align = null,
+                                $gravity = null,
+                                $wrap = null,
+                                $maxLines = null,
+                                $weight = null,
+                                $color = null,
+                                $actionBuilder = null
+                            )
+                        */
+
+// /** @var ComponentLayout */
+//     private $layout;
+//     /** @var ComponentBuilder[] */
+//     private $componentBuilders;
+//     /** @var int */
+//     private $flex;
+//     /** @var ComponentSpacing */
+//     private $spacing;
+//     /** @var ComponentMargin */
+//     private $margin;
+//     /** @var TemplateActionBuilder */
+//     private $actionBuilder;
+
+
+
+//     /** @var string */
+//     private $paddingAll;
+//     /** @var string */
+//     private $paddingTop;
+//     /** @var string */
+//     private $paddingBottom;
+//     /** @var string */
+//     private $paddingStart;
+//     /** @var string */
+//     private $paddingEnd;
+//     /** @var string */
+
+//     private $backgroundColor;
+//     /** @var string */
+//     private $borderColor;
+//     /** @var string */
+//     private $borderWidth;
+//     /** @var string */
+//     private $cornerRadius;
+//     /** @var string */
+//     private $width;
+//     /** @var string */
+//     private $height;
+//     /** @var string */
+//     private $position;
+//     /** @var string */
+//     private $offsetTop;
+//     /** @var string */
+//     private $offsetBottom;
+//     /** @var string */
+//     private $offsetStart;
+//     /** @var string */
+//     private $offsetEnd;
+//     /** @var array */
+//     private $component;
+
                         case "fl": // ส่วนทดสอบโต้ตอบข้อควมม flex
                             $textReplyMessage = new BubbleContainerBuilder(
-                                "ltr",NULL,NULL,
-                                new BoxComponentBuilder(
+                                "ltr",
+                                new new BoxComponentBuilder(  //header
+                                  "vertical",
+                                  array(
+                                      new TextComponentBuilder("Inqueue",NULL,NULL,"md","center","center",NULL,NULL,NULL,"#ffffff"),NULL,NULL,NULL,NULL,"12px","19px","16px",NULL,NULL,"#27ACB2"
+                                  )
+                                ),
+                                NULL, // hero
+                                new BoxComponentBuilder(  //body
                                     "vertical",
                                     array(
-                                        new TextComponentBuilder("hello"),
-                                        new TextComponentBuilder("world")
+                                        new TextComponentBuilder("5",1,NULL,"xxl","center",NULL,true,NULL,NULL,"#8C8C8C"),1,"md",NULL,NULL,"12px"
                                     )
-                                )
+                                ),
+                                "nano"
                             );
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
                             break;
