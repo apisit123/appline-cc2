@@ -370,7 +370,7 @@ if(!is_null($events)){
 
                           break;
 
-                        case "queues" :
+                        case "queue" :
 
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
                           $replyData = new ImagemapMessageBuilder(
@@ -537,7 +537,7 @@ if(!is_null($events)){
                             $response = json_decode($response);
                             
 
-                            $txt = "queue = ".sizeof($response->queue->inqueue)."\n"."cooking = ".sizeof($response->queue->cooking)."\n"."done = ".sizeof($response->queue->done)."\n";
+                            $txt = "Inqueue \t\t : ".sizeof($response->queue->inqueue)."\n"."cooking \t\t : ".sizeof($response->queue->cooking)."\n"."done \t\t : ".sizeof($response->queue->done)."\n";
 
                             $replyData = new TextMessageBuilder($txt);  
 
