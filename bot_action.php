@@ -391,8 +391,9 @@ if(!is_null($events)){
                         case (preg_match('/(q_)/', $userMessage) ? true : false):
 
                             $paramBranch = explode("_",$userMessage);
+                            $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/queue/queues";
 
-                            $replyData = new TextMessageBuilder($paramBranch[1]);  
+                            $replyData = new TextMessageBuilder($url);  
 
                         break;
 
