@@ -414,7 +414,7 @@ if(!is_null($events)){
                             $textReplyMessage = new BoxComponentBuilder(
                                     "vertical",
                                     array(
-                                        new TextComponentBuilder("This is Header", NULL, NULL, "xxl", "center", true, NULL, NULL, "#ffffff", NULL)
+                                        new TextComponentBuilder("This is Header")
                                     )
                                 ),
                                 new ImageComponentBuilder(
@@ -438,6 +438,34 @@ if(!is_null($events)){
                                     new BlockStyleBuilder("#FFF200") // style สำหรับ footer block
                                 )
                             );
+                            $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
+                            break;
+
+
+                        case (preg_match('/(q_)/', $userMessage) ? true : false):
+
+                            $paramBranch = explode("_",$userMessage);
+                            $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/queue/queues";
+
+                            $curl = curl_init();
+
+                            curl_setopt_array($curl, array(
+                              CURLOPT_URL => $url,
+                              CURLOPT_RETURNTRANSFER => true,
+                              CURLOPT_ENCODING => "",
+                              CURLOPT_MAXREDIRS => 10,
+                              CURLOPT_TIMEOUT => 30,
+                              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                              CURLOPT_CUSTOMREQUEST => "GET"
+                            ));
+
+                            $response = curl_exec($curl);
+
+                            $response = json_decode($response);
+                            
+
+                            $txt = "queue = ".sizeof($response->queue->inqueue)."\n"."cooking = ".sizeof($response->queue->cooking)."\n"."done = ".sizeof($response->queue->done)."\n";
+
                             $replyData = `{
   "type": "carousel",
   "contents": [
@@ -592,35 +620,7 @@ if(!is_null($events)){
       }
     }
   ]
-}`;                                                             
-                            break;
-
-
-                        case (preg_match('/(q_)/', $userMessage) ? true : false):
-
-                            $paramBranch = explode("_",$userMessage);
-                            $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/queue/queues";
-
-                            $curl = curl_init();
-
-                            curl_setopt_array($curl, array(
-                              CURLOPT_URL => $url,
-                              CURLOPT_RETURNTRANSFER => true,
-                              CURLOPT_ENCODING => "",
-                              CURLOPT_MAXREDIRS => 10,
-                              CURLOPT_TIMEOUT => 30,
-                              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                              CURLOPT_CUSTOMREQUEST => "GET"
-                            ));
-
-                            $response = curl_exec($curl);
-
-                            $response = json_decode($response);
-                            
-
-                            $txt = "queue = ".sizeof($response->queue->inqueue)."\n"."cooking = ".sizeof($response->queue->cooking)."\n"."done = ".sizeof($response->queue->done)."\n";
-
-                            $replyData = new TextMessageBuilder($txt);  
+}`; 
 
                         break;
 
