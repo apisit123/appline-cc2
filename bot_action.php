@@ -15,7 +15,6 @@ use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
 use LINE\LINEBot\MessageBuilder\LocationMessageBuilder;
 use LINE\LINEBot\MessageBuilder\AudioMessageBuilder;
 use LINE\LINEBot\MessageBuilder\VideoMessageBuilder;
-use LINE\LINEBot\MessageBuilder\FlexMessageBuilder;
 use LINE\LINEBot\ImagemapActionBuilder;
 use LINE\LINEBot\ImagemapActionBuilder\AreaBuilder;
 use LINE\LINEBot\ImagemapActionBuilder\ImagemapMessageActionBuilder ;
@@ -46,6 +45,32 @@ use LINE\LINEBot\RichMenuBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
+
+use LINE\LINEBot\Constant\Flex\ComponentIconSize;
+use LINE\LINEBot\Constant\Flex\ComponentImageSize;
+use LINE\LINEBot\Constant\Flex\ComponentImageAspectRatio;
+use LINE\LINEBot\Constant\Flex\ComponentImageAspectMode;
+use LINE\LINEBot\Constant\Flex\ComponentFontSize;
+use LINE\LINEBot\Constant\Flex\ComponentFontWeight;
+use LINE\LINEBot\Constant\Flex\ComponentMargin;
+use LINE\LINEBot\Constant\Flex\ComponentSpacing;
+use LINE\LINEBot\Constant\Flex\ComponentButtonStyle;
+use LINE\LINEBot\Constant\Flex\ComponentButtonHeight;
+use LINE\LINEBot\Constant\Flex\ComponentSpaceSize;
+use LINE\LINEBot\Constant\Flex\ComponentGravity;
+use LINE\LINEBot\MessageBuilder\FlexMessageBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\BubbleStylesBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\BlockStyleBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ContainerBuilder\BubbleContainerBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ContainerBuilder\CarouselContainerBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\BoxComponentBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\ButtonComponentBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\IconComponentBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\ImageComponentBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SpacerComponentBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\FillerComponentBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SeparatorComponentBuilder;
+use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\TextComponentBuilder;
  
  
 // ส่วนของการทำงาน
@@ -347,6 +372,20 @@ if(!is_null($events)){
                         case "queue" :
 
                           break;
+
+                        case "fl": // ส่วนทดสอบโต้ตอบข้อควมม flex
+                            $textReplyMessage = new BubbleContainerBuilder(
+                                "ltr",NULL,NULL,
+                                new BoxComponentBuilder(
+                                    "vertical",
+                                    array(
+                                        new TextComponentBuilder("hello"),
+                                        new TextComponentBuilder("world")
+                                    )
+                                )
+                            );
+                            $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
+                            break;
 
 
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
