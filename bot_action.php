@@ -388,6 +388,15 @@ if(!is_null($events)){
                             break;
 
 
+                        case (preg_match('/(q_)/', $userMessage) ? true : false):
+
+                            $paramBranch = explode("_",$userMessage);
+
+                            $replyData = new TextMessageBuilder($paramBranch[1]);  
+
+                        break;
+
+
                         case (preg_match('/^cr-/',$userMessage) ? true : false):
                             $paramRichMenu = explode(">",$userMessage);
                             if(!isset($paramRichMenu) || !is_array($paramRichMenu) || count($paramRichMenu)<3){
