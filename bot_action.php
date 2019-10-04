@@ -392,7 +392,7 @@ if(!is_null($events)){
 
                             $paramBranch = explode("_",$userMessage);
                             $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/queue/queues";
-                            $rawData = shell_exec("CURL -X GET ".$url)
+                            $rawData = shell_exec("CURL -X GET ".$url);
                             $replyData = new TextMessageBuilder($rawData);  
 
                         break;
