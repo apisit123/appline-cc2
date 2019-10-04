@@ -479,35 +479,71 @@ if(!is_null($events)){
 //     private $component;
 
                         case "fl": // ส่วนทดสอบโต้ตอบข้อควมม flex
-                            $textReplyMessage = new BubbleContainerBuilder(
-                                "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
-                                new BoxComponentBuilder(
-                                    "vertical",
-                                    array(
-                                        new TextComponentBuilder("This is Header")
-                                    )
-                                ),
-                                new ImageComponentBuilder(
-                                    "https://www.ninenik.com/images/ninenik_page_logo.png",NULL,NULL,NULL,NULL,"full","20:13","cover"),
-                                new BoxComponentBuilder(
-                                    "vertical",
-                                    array(
-                                        new TextComponentBuilder("This is Body")
-                                    )
-                                ),
-                                new BoxComponentBuilder(
-                                    "vertical",
-                                    array(
-                                        new TextComponentBuilder("This is Footer")
-                                    )
-                                ),
-                                new BubbleStylesBuilder( // style ทั้งหมดของ bubble
-                                    new BlockStyleBuilder("#FFC90E"),  // style สำหรับ header block
-                                    new BlockStyleBuilder("#EFE4B0"), // style สำหรับ hero block
-                                    new BlockStyleBuilder("#B5E61D"), // style สำหรับ body block
-                                    new BlockStyleBuilder("#FFF200") // style สำหรับ footer block
-                                ),
-                                new BubleContainerSize("nano")
+                            $textReplyMessage = new CarouselContainerBuilder(
+                              array(
+                                new BubbleContainerBuilder(
+                                    "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
+                                    new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                            new TextComponentBuilder("This is Header")
+                                        )
+                                    ),
+                                    new ImageComponentBuilder(
+                                        "https://www.ninenik.com/images/ninenik_page_logo.png",NULL,NULL,NULL,NULL,"full","20:13","cover"),
+                                    new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                            new TextComponentBuilder("This is Body")
+                                        )
+                                    ),
+                                    new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                            new TextComponentBuilder("This is Footer")
+                                        )
+                                    ),
+                                    new BubbleStylesBuilder( // style ทั้งหมดของ bubble
+                                        new BlockStyleBuilder("#FFC90E"),  // style สำหรับ header block
+                                        new BlockStyleBuilder("#EFE4B0"), // style สำหรับ hero block
+                                        new BlockStyleBuilder("#B5E61D"), // style สำหรับ body block
+                                        new BlockStyleBuilder("#FFF200") // style สำหรับ footer block
+                                    ),
+                                    "nano"
+                                  ),
+
+                                new BubbleContainerBuilder(
+                                    "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
+                                    new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                            new TextComponentBuilder("This is Header")
+                                        )
+                                    ),
+                                    new ImageComponentBuilder(
+                                        "https://www.ninenik.com/images/ninenik_page_logo.png",NULL,NULL,NULL,NULL,"full","20:13","cover"),
+                                    new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                            new TextComponentBuilder("This is Body")
+                                        )
+                                    ),
+                                    new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                            new TextComponentBuilder("This is Footer")
+                                        )
+                                    ),
+                                    new BubbleStylesBuilder( // style ทั้งหมดของ bubble
+                                        new BlockStyleBuilder("#FFC90E"),  // style สำหรับ header block
+                                        new BlockStyleBuilder("#EFE4B0"), // style สำหรับ hero block
+                                        new BlockStyleBuilder("#B5E61D"), // style สำหรับ body block
+                                        new BlockStyleBuilder("#FFF200") // style สำหรับ footer block
+                                    ),
+                                    "nano"
+                                  )
+                                
+                              )
                             );
 
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
