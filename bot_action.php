@@ -375,7 +375,7 @@ if(!is_null($events)){
                           $replyData = new ImagemapMessageBuilder(
                               $imageMapUrl,
                               'Select Branch',
-                              new BaseSizeBuilder(1040,2423),
+                              new BaseSizeBuilder(2423,1040),
                               array(
                                   new ImagemapMessageActionBuilder(
                                       'Q_SIAM',
