@@ -502,8 +502,7 @@ if(!is_null($events)){
                                     array(
                                         new TextComponentBuilder("This is Footer")
                                     )
-                                ),
-                                NULL
+                                )
                             );
 
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
@@ -532,7 +531,7 @@ if(!is_null($events)){
                             $response = json_decode($response);
                             
 
-                            $txt = "Inqueue \t\t : ".sizeof($response->queue->inqueue)."\n"."cooking \t\t : ".sizeof($response->queue->cooking)."\n"."done \t\t : ".sizeof($response->queue->done)."\n";
+                            $txt = "Inqueue \t\t : ".sizeof($response->queue->inqueue)."\n"."cooking \t\t : ".sizeof($response->queue->cooking)."\n"."done \t\t\t : ".sizeof($response->queue->done)."\n";
 
                             $replyData = new TextMessageBuilder($txt);  
 
