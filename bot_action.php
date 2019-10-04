@@ -444,8 +444,12 @@ if(!is_null($events)){
 
                             $response = curl_exec($curl);
 
+                            $response = json_decode($response);
+                            
 
-                            $replyData = new TextMessageBuilder($response);  
+                            $txt = "queue = ".sizeof($response->queue->inqueue)."\n"."cooking = ".sizeof($response->queue->cooking)."\n"."done = ".sizeof($response->queue->done)."\n";
+
+                            $replyData = new TextMessageBuilder($txt);  
 
                         break;
 
