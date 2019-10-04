@@ -488,7 +488,9 @@ if(!is_null($events)){
                                         new TextComponentBuilder("Queue SIAM",NULL,NULL,"xxl","center","center")
                                     )
                                 ),
-                                NULL,
+                                new ImageComponentBuilder(
+                                  "https://appline.cctfts.com/tfts/img/toofast_order_logo.jpg",NULL,NULL,NULL,NULL,"full","20:13","cover"),
+
                                 new BoxComponentBuilder(
                                     "vertical",
                                     array(
