@@ -506,7 +506,7 @@ if(!is_null($events)){
                                     new BlockStyleBuilder("#B5E61D"), // style สำหรับ body block
                                     new BlockStyleBuilder("#FFF200") // style สำหรับ footer block
                                 ),
-                                new BubleContainerSize("nano")
+                                "mega"
                             );
 
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
