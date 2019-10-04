@@ -369,7 +369,44 @@ if(!is_null($events)){
 
                           break;
 
-                        case "queue" :
+                        case "queues" :
+
+                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
+                          $replyData = new ImagemapMessageBuilder(
+                              $imageMapUrl,
+                              'Select Branch',
+                              new BaseSizeBuilder(1040,2423),
+                              array(
+                                  new ImagemapMessageActionBuilder(
+                                      'Q_SIAM',
+                                      new AreaBuilder(0,298,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'Q_SWU',
+                                      new AreaBuilder(0,604,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'Q_SASIN',
+                                      new AreaBuilder(0,907,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'Q_SAMYAN',
+                                      new AreaBuilder(0,1215,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'Q_KU',
+                                      new AreaBuilder(0,1523,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'Q_SALAYA',
+                                      new AreaBuilder(0,1824,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'Q_CMU',
+                                      new AreaBuilder(0,2130,1040,290)
+                                      )
+
+                              ));
 
                           break;
 
