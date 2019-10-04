@@ -51,6 +51,7 @@ use LINE\LINEBot\Constant\Flex\ComponentImageSize;
 use LINE\LINEBot\Constant\Flex\ComponentImageAspectRatio;
 use LINE\LINEBot\Constant\Flex\ComponentImageAspectMode;
 use LINE\LINEBot\Constant\Flex\ComponentFontSize;
+use LINE\LINEBot\Constant\Flex\BubleContainerSize;
 use LINE\LINEBot\Constant\Flex\ComponentFontWeight;
 use LINE\LINEBot\Constant\Flex\ComponentMargin;
 use LINE\LINEBot\Constant\Flex\ComponentSpacing;
@@ -506,7 +507,7 @@ if(!is_null($events)){
                                     new BlockStyleBuilder("#B5E61D"), // style สำหรับ body block
                                     new BlockStyleBuilder("#FFF200") // style สำหรับ footer block
                                 ),
-                                "mega"
+                                "nano"
                             );
 
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
