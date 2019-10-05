@@ -381,7 +381,10 @@ if(!is_null($events)){
                         case "queuess" :
 
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
-                          $replyData = new ImagemapMessageBuilder(
+
+                          $replyData = new MultiMessageBuilder();
+                          $replyData -> add(new TextMessageBuilder("กรุณาเลือกสาขาที่ต้องการตรวจสอบจำนวนคิว"))
+                                     -> add(new ImagemapMessageBuilder(
                               $imageMapUrl,
                               'Select Branch',
                               new BaseSizeBuilder(2423,1040),
@@ -415,7 +418,7 @@ if(!is_null($events)){
                                       new AreaBuilder(0,2130,1040,290)
                                       )
 
-                              ));
+                              )));
 
                           break;
 
