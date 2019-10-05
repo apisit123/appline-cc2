@@ -501,7 +501,7 @@ if(!is_null($events)){
                                           array(
                                               new ImageComponentBuilder(
                                                 "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full",NULL,"cover")
-                                          ),null,null,null,null,null,null,null,null,null,null,null,null,"100px","72px","72px"
+                                          ),null,null,null,null,null,null,null,null,null,null,null,"100px","72px","72px"
                                       ),
                                       new BoxComponentBuilder(
                                           "vertical",
