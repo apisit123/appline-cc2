@@ -525,7 +525,7 @@ if(!is_null($events)){
 
                             // $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);       
 
-                            $replyData = new TextMessageBuilder($textReplyMessage);                                                         
+                            $replyData = new TextMessageBuilder(json_encode($textReplyMessage));                                                         
                             break;
 
 
