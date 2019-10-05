@@ -493,6 +493,7 @@ if(!is_null($events)){
                                 new BoxComponentBuilder(
                                     "horizontal",
                                     array(
+
                                       new BoxComponentBuilder(
                                         "vertical",
                                         array(
@@ -507,6 +508,9 @@ if(!is_null($events)){
                                         array(
                                           new SpanComponentBuilder("brown_05", "xs", "#000000", "bold")
                                       )
+
+
+                                    )
                                 ),
                                 new BoxComponentBuilder(
                                     "vertical",
