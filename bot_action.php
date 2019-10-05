@@ -478,6 +478,8 @@ if(!is_null($events)){
 //     /** @var array */
 //     private $component;
 
+
+
                         case "fl": // ส่วนทดสอบโต้ตอบข้อควมม flex
                             $textReplyMessage = new BubbleContainerBuilder(
                                 "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
@@ -493,14 +495,24 @@ if(!is_null($events)){
                                 new BoxComponentBuilder(
                                     "horizontal",
                                     array(
-                                      new ImageComponentBuilder(
-                                        //url, flex, margin, align, gravity, size, aspecratio, aspecmode, backgroud, action, position, offsettop, offsetbottom, offsetstart, offsetend
-                                        "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full",NULL,"cover")
-                                      // ,
 
-                                      // new SpanComponentBuilder("brown_05", "xs", "#000000", "bold")
-
-                                     ), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "100px", "72px"
+                                      new BoxComponentBuilder(
+                                          "vertical",
+                                          array(
+                                              new ImageComponentBuilder(
+                                                "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full",NULL,"cover")
+                                          ),null,null,null,null,null,null,null,null,null,null,null,null,"100px","72px","72px"
+                                      ),
+                                      new BoxComponentBuilder(
+                                          "vertical",
+                                          array(
+                                              new TextComponentBuilder("This is Footer1"),
+                                              new TextComponentBuilder("This is Footer2"),
+                                              new TextComponentBuilder("This is Footer3")
+                                          )
+                                      )
+                                     
+                                    )
                                 ),
                                 new BoxComponentBuilder(
                                     "vertical",
