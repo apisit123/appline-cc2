@@ -761,6 +761,7 @@ if(!is_null($events)){
                 }else{
                     // กรณีทดสอบเงื่อนไขอื่นๆ ผู้ใช้ไม่ได้ส่งเป็นข้อความ
                     // $textReplyMessage = 'สวัสดีครับ คุณ '.$typeMessage;   
+                    $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
                     $textReplyMessage = '';      
                     $replyData = new TextMessageBuilder($textReplyMessage);         
                 }
