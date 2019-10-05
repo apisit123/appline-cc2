@@ -73,6 +73,14 @@ use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\FillerComponentBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SeparatorComponentBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\TextComponentBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SpanComponentBuilder;
+
+define("siam", "สยาม");
+define("swu", "มศว");
+define("sasin", "ศศินทร์");
+define("samyan", "สามย่าน");
+define("ku", "เกษตร");
+define("salaya", "ศาลายา");
+define("cmu", "เชียงใหม่");
  
 // ส่วนของการทำงาน
 if(!is_null($events)){
@@ -553,7 +561,7 @@ if(!is_null($events)){
 
                             
                             $replyData = new MultiMessageBuilder();
-                            $replyData -> add(new TextMessageBuilder("สถานะคิวของสาขา ".$paramBranch[1]))
+                            $replyData -> add(new TextMessageBuilder("สถานะคิวของสาขา ".constant($paramBranch[1])))
                                        -> add(new TextMessageBuilder($txt));
 
                         break;
