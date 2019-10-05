@@ -549,9 +549,12 @@ if(!is_null($events)){
 
                             $response = json_decode($response);
                             
-                            $txt = "Inqueue \t\t : ".sizeof($response->queue->inqueue)."\n"."cooking \t\t : ".sizeof($response->queue->cooking)."\n"."done \t\t\t : ".sizeof($response->queue->done)."\n";
+                            $txt = "Inqueue \t\t : ".sizeof($response->queue->inqueue)." ออเดอร์\n"."cooking \t\t : ".sizeof($response->queue->cooking)." ออเดอร์\n"."done \t\t\t : ".sizeof($response->queue->done)." ออเดอร์\n";
 
-                            $replyData = new TextMessageBuilder($txt);  
+                            
+                            $replyData = new MultiMessageBuilder();
+                            $replyData -> add(new TextMessageBuilder("สถานะคิวของสาขา ".$paramBranch[1]))
+                                       -> add(new TextMessageBuilder($txt));
 
                         break;
 
