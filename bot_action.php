@@ -117,7 +117,7 @@ if(!is_null($events)){
       $replyData -> add(new TextMessageBuilder($greetMSG))
                  -> add(new StickerMessageBuilder(1, 4))
                  -> add(new VideoMessageBuilder("https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon.mp4", "https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon_Moment.jpg"))
-                 -> add(new TextMessageBuilder("สำหรับขั้นตอนการสั่งเครื่องดื่มผ่าน LineOrder\nสามารถดูตาม video ด้านบนได้เลยจ้า \u{10002E}"));
+                 -> add(new TextMessageBuilder("สำหรับขั้นตอนการสั่งเครื่องดื่มผ่าน Line@ Too Fast Order\nสามารถดูตาม video ด้านบนได้เลยจ้า \u{10002E}"));
                 
     }
      
