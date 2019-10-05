@@ -373,47 +373,160 @@ if(!is_null($events)){
                         case "queuess" :
 
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
-                          $replyData = new MultiMessageBuilder();
-                          $replyData -> add(new TextMessageBuilder("กรุณาเลือกสาขาที่ต้องการตรวจสอบสถานะคิวปัจจุบัน"))
-                                     -> add(new ImagemapMessageBuilder(
-                                        $imageMapUrl,
-                                        'Select Branch',
-                                        new BaseSizeBuilder(2423,1040),
-                                        array(
-                                            new ImagemapMessageActionBuilder(
-                                                'QUEUE_SIAM',
-                                                new AreaBuilder(0,298,1040,290)
-                                                ),
-                                            new ImagemapMessageActionBuilder(
-                                                'QUEUE_SWU',
-                                                new AreaBuilder(0,604,1040,290)
-                                                ),
-                                            new ImagemapMessageActionBuilder(
-                                                'QUEUE_SASIN',
-                                                new AreaBuilder(0,907,1040,290)
-                                                ),
-                                            new ImagemapMessageActionBuilder(
-                                                'QUEUE_SAMYAN',
-                                                new AreaBuilder(0,1215,1040,290)
-                                                ),
-                                            new ImagemapMessageActionBuilder(
-                                                'QUEUE_KU',
-                                                new AreaBuilder(0,1523,1040,290)
-                                                ),
-                                            new ImagemapMessageActionBuilder(
-                                                'QUEUE_SALAYA',
-                                                new AreaBuilder(0,1824,1040,290)
-                                                ),
-                                            new ImagemapMessageActionBuilder(
-                                                'QUEUE_CMU',
-                                                new AreaBuilder(0,2130,1040,290)
-                                                )
+                          $replyData = new ImagemapMessageBuilder(
+                              $imageMapUrl,
+                              'Select Branch',
+                              new BaseSizeBuilder(2423,1040),
+                              array(
+                                  new ImagemapMessageActionBuilder(
+                                      'QUEUE_SIAM',
+                                      new AreaBuilder(0,298,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'QUEUE_SWU',
+                                      new AreaBuilder(0,604,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'QUEUE_SASIN',
+                                      new AreaBuilder(0,907,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'QUEUE_SAMYAN',
+                                      new AreaBuilder(0,1215,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'QUEUE_KU',
+                                      new AreaBuilder(0,1523,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'QUEUE_SALAYA',
+                                      new AreaBuilder(0,1824,1040,290)
+                                      ),
+                                  new ImagemapMessageActionBuilder(
+                                      'QUEUE_CMU',
+                                      new AreaBuilder(0,2130,1040,290)
+                                      )
 
-                                        ))
-                                   );
-                                    
-                        }
-                        break;
+                              ));
+
+                          break;
+
+/**     
+  public function __construct(
+      $text,
+      $flex = null,
+      $margin = null,
+      $size = null,
+      $align = null,
+      $gravity = null,
+      $wrap = null,
+      $maxLines = null,
+      $weight = null,
+      $color = null,
+      $actionBuilder = null
+  )
+*/
+
+// /** @var ComponentLayout */
+//     private $layout;
+//     /** @var ComponentBuilder[] */
+//     private $componentBuilders;
+//     /** @var int */
+//     private $flex;
+//     /** @var ComponentSpacing */
+//     private $spacing;
+//     /** @var ComponentMargin */
+//     private $margin;
+//     /** @var TemplateActionBuilder */
+//     private $actionBuilder;
+
+
+
+//     /** @var string */
+//     private $paddingAll;
+//     /** @var string */
+//     private $paddingTop;
+//     /** @var string */
+//     private $paddingBottom;
+//     /** @var string */
+//     private $paddingStart;
+//     /** @var string */
+//     private $paddingEnd;
+//     /** @var string */
+
+//     private $backgroundColor;
+//     /** @var string */
+//     private $borderColor;
+//     /** @var string */
+//     private $borderWidth;
+//     /** @var string */
+//     private $cornerRadius;
+//     /** @var string */
+//     private $width;
+//     /** @var string */
+//     private $height;
+//     /** @var string */
+//     private $position;
+//     /** @var string */
+//     private $offsetTop;
+//     /** @var string */
+//     private $offsetBottom;
+//     /** @var string */
+//     private $offsetStart;
+//     /** @var string */
+//     private $offsetEnd;
+//     /** @var array */
+//     private $component;
+
+
+
+                        case "fl": // ส่วนทดสอบโต้ตอบข้อควมม flex
+                            $textReplyMessage = new BubbleContainerBuilder(
+                                "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
+                                new BoxComponentBuilder(
+                                    "vertical",
+                                    array(
+                                        // text, flex, margin, size, align. gravity, warp, maxline, weight, color, action
+                                        new TextComponentBuilder("Queue SIAM",NULL,NULL,"xxl","center","center")
+                                    )
+                                ),
+                                NULL,
+
+                                new BoxComponentBuilder(
+                                    "horizontal",
+                                    array(
+                                      new BoxComponentBuilder(
+                                          "vertical",
+                                          array(
+                                              new ImageComponentBuilder(
+                                                "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full",NULL,"cover")
+                                          )
+                                      ),
+                                      new BoxComponentBuilder(
+                                          "vertical",
+                                          array(
+                                              new TextComponentBuilder("This is Footer1"),
+                                              new TextComponentBuilder("This is Footer2"),
+                                              new TextComponentBuilder("This is Footer3")
+                                          )
+                                      )
+                                     
+                                    )
+                                ),
+                                new BoxComponentBuilder(
+                                    "vertical",
+                                    array(
+                                        new TextComponentBuilder("This is Footer")
+                                    )
+                                ),
+                                NULL
+                            );
+
+                            $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);
+
+                            $replyData = json_decode($replyData);                                                                
+                            break;
+
 
                         case (preg_match('/(queue_)/', $userMessage) ? true : false):
 
@@ -438,9 +551,7 @@ if(!is_null($events)){
                             
                             $txt = "Inqueue \t\t : ".sizeof($response->queue->inqueue)."\n"."cooking \t\t : ".sizeof($response->queue->cooking)."\n"."done \t\t\t : ".sizeof($response->queue->done)."\n";
 
-                            $replyData = new MultiMessageBuilder();
-                            $replyData  -> add(new TextMessageBuilder("สถานะคิวปัจจุบันของสาขา ".$paramBranch[1]))
-                                        -> add(new TextMessageBuilder($txt));
+                            $replyData = new TextMessageBuilder($txt);  
 
                         break;
 
