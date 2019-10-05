@@ -495,6 +495,29 @@ if(!is_null($events)){
                                 new BoxComponentBuilder(
                                     "horizontal",
                                     array(
+// 'type' => ComponentType::BOX,
+// 'layout' => $this->layout,
+// 'contents' => $contents,
+// 'flex' => $this->flex,
+// 'spacing' => $this->spacing,
+// 'margin' => $this->margin,
+// 'action' => BuildUtil::build($this->actionBuilder, 'buildTemplateAction'),
+// 'paddingAll' => $this->paddingAll,
+// 'paddingTop' => $this->paddingTop,
+// 'paddingBottom' => $this->paddingBottom,
+// 'paddingStart' => $this->paddingStart,
+// 'paddingEnd' => $this->paddingEnd,
+// 'backgroundColor' => $this->backgroundColor,
+// 'borderColor' => $this->borderColor,
+// 'borderWidth' => $this->borderWidth,
+// 'cornerRadius' => $this->cornerRadius,
+// 'width' => $this->width,
+// 'height' => $this->height,
+// 'position' => $this->position,
+// 'offsetTop' => $this->offsetTop,
+// 'offsetBottom' => $this->offsetBottom,
+// 'offsetStart' => $this->offsetStart,
+// 'offsetEnd' => $this->offsetEnd,
 
                                       new BoxComponentBuilder(
                                           "vertical",
@@ -504,7 +527,7 @@ if(!is_null($events)){
                                           ),
                                           null,null,null,null,
                                           null,null,null,null,null,
-                                          null,null,null,"10px","72px","72px"
+                                          null,"#bcbcbc","10px","10px","72px","72px"
                                       ),
                                       new BoxComponentBuilder(
                                           "vertical",
