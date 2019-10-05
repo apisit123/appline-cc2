@@ -496,7 +496,7 @@ if(!is_null($events)){
                                     array(
                                       new ImageComponentBuilder(
                                         //url, flex, margin, align, gravity, size, aspecratio, aspecmode, backgroud, action, position, offsettop, offsetbottom, offsetstart, offsetend
-                                        "https://appline.cctfts.com/tfts/img/toofast_order_logo.jpg",NULL,NULL,NULL,NULL,"full","20:13","cover",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,"100px","72px","72px")
+                                        "https://appline.cctfts.com/tfts/img/toofast_order_logo.jpg",NULL,NULL,NULL,NULL,"full","20:13","cover",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,"100px","72px","72px"),
                                       // text, flex, margin, size, align. gravity, warp, maxline, weight, color, action
                                       new TextComponentBuilder("Queue SIAM",NULL,NULL,"xxl","center","center")
                                       )
