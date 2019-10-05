@@ -501,10 +501,7 @@ if(!is_null($events)){
                                               new ImageComponentBuilder(
                                                 "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full",NULL,"cover")
                                           ),
-                                          null,null,null,null,
-                                          null,null,null,null,null,
-                                          null,null,null,"10px","72px","72px",
-                                          null,null,null,null,null
+                                          "10px","72px","72px",
                                       ),
                                       new BoxComponentBuilder(
                                           "vertical",
@@ -526,7 +523,9 @@ if(!is_null($events)){
                                 NULL
                             );
 
-                            $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);                                                                
+                            // $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);       
+
+                            $replyData = new TextMessageBuilder($textReplyMessage);                                                         
                             break;
 
 
