@@ -370,7 +370,7 @@ if(!is_null($events)){
 
                           break;
 
-                        case "queue" :
+                        case "queuess" :
 
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
                           $replyData = new ImagemapMessageBuilder(
