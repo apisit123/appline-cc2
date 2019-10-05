@@ -70,6 +70,8 @@ $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SE
 
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
+
+error_log($content);
   
 // กำหนดค่า signature สำหรับตรวจสอบข้อมูลที่ส่งมาว่าเป็นข้อมูลจาก LINE
 $hash = hash_hmac('sha256', $content, LINE_MESSAGE_CHANNEL_SECRET, true);
