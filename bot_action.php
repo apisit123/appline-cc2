@@ -373,43 +373,47 @@ if(!is_null($events)){
                         case "queuess" :
 
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
-                          $replyData = new ImagemapMessageBuilder(
-                              $imageMapUrl,
-                              'Select Branch',
-                              new BaseSizeBuilder(2423,1040),
-                              array(
-                                  new ImagemapMessageActionBuilder(
-                                      'Q_SIAM',
-                                      new AreaBuilder(0,298,1040,290)
-                                      ),
-                                  new ImagemapMessageActionBuilder(
-                                      'Q_SWU',
-                                      new AreaBuilder(0,604,1040,290)
-                                      ),
-                                  new ImagemapMessageActionBuilder(
-                                      'Q_SASIN',
-                                      new AreaBuilder(0,907,1040,290)
-                                      ),
-                                  new ImagemapMessageActionBuilder(
-                                      'Q_SAMYAN',
-                                      new AreaBuilder(0,1215,1040,290)
-                                      ),
-                                  new ImagemapMessageActionBuilder(
-                                      'Q_KU',
-                                      new AreaBuilder(0,1523,1040,290)
-                                      ),
-                                  new ImagemapMessageActionBuilder(
-                                      'Q_SALAYA',
-                                      new AreaBuilder(0,1824,1040,290)
-                                      ),
-                                  new ImagemapMessageActionBuilder(
-                                      'Q_CMU',
-                                      new AreaBuilder(0,2130,1040,290)
-                                      )
+                          $replyData = new MultiMessageBuilder();
+                          $replyData -> add(new TextMessageBuilder("กรุณาเลือกสาขาที่ต้องการตรวจสอบสถานะคิวปัจจุบัน"))
+                                     -> add(new ImagemapMessageBuilder(
+                                        $imageMapUrl,
+                                        'Select Branch',
+                                        new BaseSizeBuilder(2423,1040),
+                                        array(
+                                            new ImagemapMessageActionBuilder(
+                                                'QUEUE_SIAM',
+                                                new AreaBuilder(0,298,1040,290)
+                                                ),
+                                            new ImagemapMessageActionBuilder(
+                                                'QUEUE_SWU',
+                                                new AreaBuilder(0,604,1040,290)
+                                                ),
+                                            new ImagemapMessageActionBuilder(
+                                                'QUEUE_SASIN',
+                                                new AreaBuilder(0,907,1040,290)
+                                                ),
+                                            new ImagemapMessageActionBuilder(
+                                                'QUEUE_SAMYAN',
+                                                new AreaBuilder(0,1215,1040,290)
+                                                ),
+                                            new ImagemapMessageActionBuilder(
+                                                'QUEUE_KU',
+                                                new AreaBuilder(0,1523,1040,290)
+                                                ),
+                                            new ImagemapMessageActionBuilder(
+                                                'QUEUE_SALAYA',
+                                                new AreaBuilder(0,1824,1040,290)
+                                                ),
+                                            new ImagemapMessageActionBuilder(
+                                                'QUEUE_CMU',
+                                                new AreaBuilder(0,2130,1040,290)
+                                                )
 
-                              ));
-
-                          break;
+                                        ))
+                                   );
+                                    
+                        }
+                        break;
 
 /**     
   public function __construct(
@@ -500,8 +504,7 @@ if(!is_null($events)){
                                           array(
                                               new ImageComponentBuilder(
                                                 "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full",NULL,"cover")
-                                          ),
-                                          "10px","72px","72px",
+                                          )
                                       ),
                                       new BoxComponentBuilder(
                                           "vertical",
@@ -529,7 +532,7 @@ if(!is_null($events)){
                             break;
 
 
-                        case (preg_match('/(q_)/', $userMessage) ? true : false):
+                        case (preg_match('/(queue_)/', $userMessage) ? true : false):
 
                             $paramBranch = explode("_",$userMessage);
                             $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/queue/queues";
@@ -552,7 +555,9 @@ if(!is_null($events)){
                             
                             $txt = "Inqueue \t\t : ".sizeof($response->queue->inqueue)."\n"."cooking \t\t : ".sizeof($response->queue->cooking)."\n"."done \t\t\t : ".sizeof($response->queue->done)."\n";
 
-                            $replyData = new TextMessageBuilder($txt);  
+                            $replyData = new MultiMessageBuilder();
+                            $replyData  -> add(new TextMessageBuilder("สถานะคิวปัจจุบันของสาขา ".$paramBranch[1]))
+                                        -> add(new TextMessageBuilder($txt));
 
                         break;
 
