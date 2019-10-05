@@ -491,14 +491,21 @@ if(!is_null($events)){
                                 NULL,
 
                                 new BoxComponentBuilder(
-                                    "vertical",
+                                    "horizontal",
                                     array(
-                                      new ImageComponentBuilder(
+                                      new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                          new ImageComponentBuilder(
                                         //url, flex, margin, align, gravity, size, aspecratio, aspecmode, backgroud, action, position, offsettop, offsetbottom, offsetstart, offsetend
-                                        "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full","20:13","cover",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,"100px","72px","72px"),
-                                      new FillerComponentBuilder(),
-                                      // text, flex, margin, size, align. gravity, warp, maxline, weight, color, action
-                                      new TextComponentBuilder("Queue SIAM",NULL,NULL,"xxl","center","center")
+                                        "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full",NULL,"cover",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,"100px","72px","72px")
+                                        
+                                        )
+                                      ),
+                                      new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                          new SpanComponentBuilder("brown_05", "xs", "#000000", "bold")
                                       )
                                 ),
                                 new BoxComponentBuilder(
