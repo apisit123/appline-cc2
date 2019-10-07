@@ -380,7 +380,7 @@ if(!is_null($events)){
 
                         case "help" :
 
-                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how2order.png?_ignored=';
+                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
 
                           $replyData = new ImagemapMessageBuilder(
                               $imageMapUrl,
@@ -398,7 +398,7 @@ if(!is_null($events)){
 
                         case "queuess" :
 
-                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
+                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
 
                           $replyData = new MultiMessageBuilder();
                           $replyData -> add(new TextMessageBuilder("กรุณาเลือกสาขาที่ต้องการตรวจสอบจำนวนคิว"))
