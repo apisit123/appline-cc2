@@ -379,7 +379,32 @@ if(!is_null($events)){
                           break;
 
                         case "help" :
+                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/help.png?_ignored=';
 
+                          $replyData = new ImagemapMessageBuilder(
+                              $imageMapUrl,
+                              'HELP',
+                              new BaseSizeBuilder(1040,1040),
+                              array(
+                                new ImagemapMessageActionBuilder(
+                                    'How to order',
+                                    new AreaBuilder(31,191,982,230)
+                                    ),
+                                new ImagemapMessageActionBuilder(
+                                    'Solve RichMenu problem',
+                                    new AreaBuilder(31,442,982,230)
+                                    ),
+                                new ImagemapMessageActionBuilder(
+                                    'How to order',
+                                    new AreaBuilder(31,677,982,230)
+                                    )
+                              )
+                            );
+                          
+
+                          break;
+
+                        case "how to use" :
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
 
                           $replyData = new ImagemapMessageBuilder(
@@ -393,7 +418,6 @@ if(!is_null($events)){
                                     )
                               )
                             );
-
                           break;
 
                         case "queuess" :
