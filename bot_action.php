@@ -404,7 +404,7 @@ if(!is_null($events)){
 
                           break;
 
-                        case "how to use" :
+                        case "how to order" :
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
 
                           $replyData = new ImagemapMessageBuilder(
