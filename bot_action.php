@@ -384,9 +384,14 @@ if(!is_null($events)){
 
                           $replyData = new ImagemapMessageBuilder(
                               $imageMapUrl,
-                              'Select Branch',
+                              'HOW TO ORDER',
                               new BaseSizeBuilder(1000,700),
-                              NULL
+                              array(
+                                new ImagemapMessageActionBuilder(
+                                    '...',
+                                    new AreaBuilder(0,0,1040,1486)
+                                    )
+                              )
                             );
 
                           break;
