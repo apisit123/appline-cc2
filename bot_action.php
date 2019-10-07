@@ -112,15 +112,25 @@ if(!is_null($events)){
 
       $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
 
-      $greetMSG = "สวัสดีค่ะ คุณ{$profile['displayName']} \n
-ขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ \u{100079}\n
-เราจะทำให้การสั่งอาหารของคุณ ไม่ต้องรอนานอีกต่อไป \u{100037}";
+      $greetMSG = "สวัสดีค่ะ คุณ {$profile['displayName']} \n
+ขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ \u{100079}";
 
       $replyData = new MultiMessageBuilder();
-      $replyData -> add(new TextMessageBuilder($greetMSG))
-                 -> add(new StickerMessageBuilder(1, 4))
-                 -> add(new VideoMessageBuilder("https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon.mp4", "https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon_Moment.jpg"))
-                 -> add(new TextMessageBuilder("สำหรับขั้นตอนการสั่งเครื่องดื่มผ่าน Line@ Too Fast Order\nสามารถดูตาม video ด้านบนได้เลยจ้า \u{10002E}"));
+      $replyData  -> add(new TextMessageBuilder($greetMSG))
+                  -> add(new VideoMessageBuilder("https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon.mp4", "https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon_Moment.jpg"))
+                  -> add(new TextMessageBuilder("สำหรับขั้นตอนการสั่งเครื่องดื่มผ่าน Line@ Too Fast Order\nสามารถดูตาม video ด้านบนได้เลยจ้า \u{10002E}"))
+                  -> add(new TextMessageBuilder("หากต้องการความช่วยเหลือสามารถพิมพ์ \"help\" ได้เลย\nหรือติดต่อที่หน้าแคชเชียร์เพื่อสอบถามปัญหาต่างๆ"))
+                  -> add(new ImagemapMessageBuilder(
+                              "https://storage.googleapis.com/toofast-bucket/linebot/help_txt.png?_ignored=",
+                              'HELP',
+                              new BaseSizeBuilder(300,1040),
+                              array(
+                                new ImagemapMessageActionBuilder(
+                                    '...',
+                                    new AreaBuilder(0,0,1040,300)
+                                    )
+                              )
+                            ));
                 
     }
      
@@ -361,7 +371,7 @@ if(!is_null($events)){
                         case "promotion" :
 
                           $img_url = "https://storage.googleapis.com/toofast-bucket/promote/too%20fast%20order%20%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%97.png";
-                          $replyData = new LINE\LINEBot\MessageBuilder\ImageMessageBuilder($img_url, $img_url);
+                          $replyData = new ImageMessageBuilder($img_url, $img_url);
 
                           break;
 
