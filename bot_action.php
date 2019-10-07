@@ -378,6 +378,19 @@ if(!is_null($events)){
 
                           break;
 
+                        case "help" :
+
+                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how2order.jpg?_ignored=';
+
+                          $replyData = new ImagemapMessageBuilder(
+                              $imageMapUrl,
+                              'Select Branch',
+                              new BaseSizeBuilder(1000,700),
+                              NULL
+                            );
+
+                          break;
+
                         case "queuess" :
 
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
