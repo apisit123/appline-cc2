@@ -365,7 +365,20 @@ if(!is_null($events)){
                           }else{
                             $textReplyMessage = "ไม่สามารถอัพเดทระบบได้ในขณะนี้ โปรดติดต่อผู้พัฒนาระบบ";
                           }
-                          $replyData = new TextMessageBuilder($textReplyMessage);  
+                          
+                          $replyData = new MultiMessageBuilder();
+                          $replyData  -> add(new TextMessageBuilder($textReplyMessage))
+                                      -> add(new ImagemapMessageBuilder(
+                              "https://storage.googleapis.com/toofast-bucket/linebot/call_richmenu.png?_ignored=",
+                              'Update RichMenu',
+                              new BaseSizeBuilder(1040,1040),
+                              array(
+                                new ImagemapMessageActionBuilder(
+                                    '...',
+                                    new AreaBuilder(0,0,1,1)
+                                    )
+                              )
+                            ));
                           break;
 
                         case "promotion" :
@@ -414,7 +427,20 @@ if(!is_null($events)){
                           }else{
                             $textReplyMessage = "ไม่สามารถอัพเดทระบบได้ในขณะนี้ โปรดติดต่อผู้พัฒนาระบบ";
                           }
-                          $replyData = new TextMessageBuilder($textReplyMessage);
+                          
+                          $replyData = new MultiMessageBuilder();
+                          $replyData  -> add(new TextMessageBuilder($textReplyMessage))
+                                      -> add(new ImagemapMessageBuilder(
+                              "https://storage.googleapis.com/toofast-bucket/linebot/call_richmenu.png?_ignored=",
+                              'Update RichMenu',
+                              new BaseSizeBuilder(1040,1040),
+                              array(
+                                new ImagemapMessageActionBuilder(
+                                    '...',
+                                    new AreaBuilder(0,0,1,1)
+                                    )
+                              )
+                            ));
 
 
                           break;
@@ -429,7 +455,7 @@ if(!is_null($events)){
                               array(
                                 new ImagemapMessageActionBuilder(
                                     '...',
-                                    new AreaBuilder(0,0,1040,1486)
+                                    new AreaBuilder(0,0,1,1)
                                     )
                               )
                             );
