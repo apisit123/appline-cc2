@@ -380,7 +380,7 @@ if(!is_null($events)){
 
                         case "help" :
 
-                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how2order.jpg?_ignored=';
+                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how2order.png?_ignored=';
 
                           $replyData = new ImagemapMessageBuilder(
                               $imageMapUrl,
