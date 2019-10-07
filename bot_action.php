@@ -81,6 +81,9 @@ define("samyan", "สามย่าน");
 define("ku", "เกษตร");
 define("salaya", "ศาลายา");
 define("cmu", "เชียงใหม่");
+
+define('RICHMENU', 'richmenu-c23206d2a8500d452551b52271125458');
+
  
 // ส่วนของการทำงาน
 if(!is_null($events)){
@@ -107,7 +110,7 @@ if(!is_null($events)){
     // ถ้า bot ถูกเพื่มเป้นเพื่อน หรือถูกติดตาม หรือ ยกเลิกการ บล็อก
     if(!is_null($eventFollow)){
 
-      $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
+      $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
 
       $greetMSG = "สวัสดีค่ะ คุณ{$profile['displayName']} \n
 ขอบคุณที่เป็นเพื่อนกับทูฟาสออเดอร์นะคะ \u{100079}\n
@@ -345,8 +348,8 @@ if(!is_null($events)){
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
                         case "update" :
-                          $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
-                          error_log(json_encode($respRichMenu));
+                          $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
+                          
                           if(json_encode($respRichMenu) == "{}"){
                             $textReplyMessage = "อัพเดทระบบเรียบร้อยแล้ว";
                           }else{
@@ -356,8 +359,8 @@ if(!is_null($events)){
                           break;
 
                         case "อัพเดท" :
-                          $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
-                          error_log(json_encode($respRichMenu));
+                          $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
+                          
                           if(json_encode($respRichMenu) == "{}"){
                             $textReplyMessage = "อัพเดทระบบเรียบร้อยแล้ว";
                           }else{
@@ -395,12 +398,26 @@ if(!is_null($events)){
                                     new AreaBuilder(31,442,982,230)
                                     ),
                                 new ImagemapMessageActionBuilder(
-                                    'How to order',
+                                    'FAQ',
                                     new AreaBuilder(31,677,982,230)
                                     )
                               )
                             );
                           
+
+                          break;
+
+                        case "solve richmenu problem" :
+
+                          $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
+                          
+                          if(json_encode($respRichMenu) == "{}"){
+                            $textReplyMessage = "อัพเดทระบบเรียบร้อยแล้ว";
+                          }else{
+                            $textReplyMessage = "ไม่สามารถอัพเดทระบบได้ในขณะนี้ โปรดติดต่อผู้พัฒนาระบบ";
+                          }
+                          $replyData = new TextMessageBuilder($textReplyMessage);
+
 
                           break;
 
@@ -769,7 +786,7 @@ if(!is_null($events)){
                             $replyData = new TextMessageBuilder($textReplyMessage,$quickReply);                             
                             break;                                                                         
                     default:
-                        $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
+                        $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
                         $url = "https://bots.dialogflow.com/line/80a5e0d6-016f-46f5-b8b8-0302c02896b3/webhook";
                         $headers = getallheaders();
             //          file_put_contents('headers.txt',json_encode($headers, JSON_PRETTY_PRINT));          
@@ -803,7 +820,7 @@ if(!is_null($events)){
                 }else{
                     // กรณีทดสอบเงื่อนไขอื่นๆ ผู้ใช้ไม่ได้ส่งเป็นข้อความ
                     // $textReplyMessage = 'สวัสดีครับ คุณ '.$typeMessage;   
-                    $respRichMenu = $bot->linkRichMenu($userId,"richmenu-c23206d2a8500d452551b52271125458");
+                    $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
                     $textReplyMessage = '';      
                     $replyData = new TextMessageBuilder($textReplyMessage);         
                 }
