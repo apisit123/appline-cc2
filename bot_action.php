@@ -358,18 +358,6 @@ if(!is_null($events)){
                           $replyData = new TextMessageBuilder($textReplyMessage);  
                           break;
 
-                        case "อัพเดท" :
-                          $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
-                          
-                          if(json_encode($respRichMenu) == "{}"){
-                            $textReplyMessage = "อัพเดทระบบเรียบร้อยแล้ว";
-                          }else{
-                            $textReplyMessage = "ไม่สามารถอัพเดทระบบได้ในขณะนี้ โปรดติดต่อผู้พัฒนาระบบ";
-                          }
-                          $replyData = new TextMessageBuilder($textReplyMessage);  
-                          break;
-
-
                         case "promotion" :
 
                           $img_url = "https://storage.googleapis.com/toofast-bucket/promote/too%20fast%20order%20%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%97.png";
