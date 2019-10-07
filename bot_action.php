@@ -119,7 +119,7 @@ if(!is_null($events)){
       $replyData  -> add(new TextMessageBuilder($greetMSG))
                   -> add(new VideoMessageBuilder("https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon.mp4", "https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon_Moment.jpg"))
                   -> add(new TextMessageBuilder("สำหรับขั้นตอนการสั่งเครื่องดื่มผ่าน Line@ Too Fast Order\nสามารถดูตาม video ด้านบนได้เลยจ้า \u{10002E}"))
-                  -> add(new TextMessageBuilder("หากต้องการความช่วยเหลือสามารถพิมพ์ \"help\" ได้เลย\nหรือติดต่อที่หน้าแคชเชียร์เพื่อสอบถามปัญหาต่างๆ"))
+                  -> add(new TextMessageBuilder("หากต้องการความช่วยเหลือเพิ่มเติมสามารถพิมพ์ \"help\" ได้เลย\nหรือติดต่อแคชเชียร์หน้าร้านเพื่อสอบถามข้อมูลหรือปัญหาต่างๆ"))
                   -> add(new ImagemapMessageBuilder(
                               "https://storage.googleapis.com/toofast-bucket/linebot/help_txt.png?_ignored=",
                               'HELP',
