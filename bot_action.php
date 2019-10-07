@@ -126,7 +126,7 @@ if(!is_null($events)){
                               new BaseSizeBuilder(300,1040),
                               array(
                                 new ImagemapMessageActionBuilder(
-                                    '...',
+                                    'HELP',
                                     new AreaBuilder(0,0,1040,300)
                                     )
                               )
