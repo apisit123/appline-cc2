@@ -385,7 +385,7 @@ if(!is_null($events)){
                           $replyData = new ImagemapMessageBuilder(
                               $imageMapUrl,
                               'HOW TO ORDER',
-                              new BaseSizeBuilder(1000,700),
+                              new BaseSizeBuilder(1486,1040),
                               array(
                                 new ImagemapMessageActionBuilder(
                                     '...',
