@@ -509,22 +509,34 @@ if(!is_null($events)){
                           case (preg_match('/(สั่ง)/', $userMessage) ? true : false):
 
                             $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
+                            
                             $replyData = new MultiMessageBuilder();
                             
 
                             $replyData -> add(new ImagemapMessageBuilder(
-                                $imageMapUrl,
-                                'HOW TO ORDER',
-                                new BaseSizeBuilder(1486,1040),
-                                array(
-                                  new ImagemapMessageActionBuilder(
-                                      '...',
-                                      new AreaBuilder(0,0,1,1)
-                                      )
-                                )
-                              ))
+                                            $imageMapUrl,
+                                            'HOW TO ORDER',
+                                            new BaseSizeBuilder(1486,1040),
+                                            array(
+                                              new ImagemapMessageActionBuilder(
+                                                  '...',
+                                                  new AreaBuilder(0,0,1,1)
+                                                  )
+                                            )
+                                          ))
+                                      -> add(new ImagemapMessageBuilder(
+                                          "https://storage.googleapis.com/toofast-bucket/linebot/PokeNowwwwwwwwwwwwwwwwwwwwwwwwww.png?_ignored=",
+                                          'จิ้มเล๊ยยยยยยยยยยยยยยยยยยยยยยยยย',
+                                          new BaseSizeBuilder(700,1040),
+                                          array(
+                                            new ImagemapMessageActionBuilder(
+                                                '...',
+                                                new AreaBuilder(0,0,1,1)
+                                                )
+                                          )
+                                        ));                                      
 
-                                        -> add(new VideoMessageBuilder("https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon.mp4", "https://storage.googleapis.com/toofast-bucket/video%20cc2/ccamazon_Moment.jpg"));
+                                        
 
                         break;
 
