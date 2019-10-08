@@ -390,6 +390,8 @@ if(!is_null($events)){
 
                         case "history" :
 
+                          $replyData = new TextMessageBuilder("ฟังก์ชัน \"history\" ยังไม่เปิดใช้บริการค่ะ"); 
+
                           break;
 
                         case "help" :
