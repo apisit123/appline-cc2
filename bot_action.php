@@ -508,7 +508,7 @@ if(!is_null($events)){
                           break;
 
 
-                          case (preg_match('/(สั่ง)/', $userMessage) ? true : false):
+                          case (preg_match('/(สั่ง)(order)(I can’t order)/', $userMessage) ? true : false):
 
                             $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
                             
