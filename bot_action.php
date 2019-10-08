@@ -529,9 +529,9 @@ if(!is_null($events)){
                                           'จิ้มเล๊ยยยยยยยยยยยยยยยยยยยยยยยยย',
                                           new BaseSizeBuilder(700,1040),
                                           array(
-                                            new ImagemapMessageActionBuilder(
-                                                '...',
-                                                new AreaBuilder(0,0,1,1)
+                                            new ImagemapUriActionBuilder(
+                                                "line://app/1615865486-AoPxqqQr",
+                                                new AreaBuilder(0,0,1040,700)
                                                 )
                                           )
                                         ));                                      
