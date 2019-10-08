@@ -463,42 +463,42 @@ if(!is_null($events)){
 
                         case "queuess" :
 
-                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/br_.png?_ignored=';
+                          $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/queue.png?_ignored=';
 
                           $replyData = new MultiMessageBuilder();
                           $replyData -> add(new TextMessageBuilder("กรุณาเลือกสาขาที่ต้องการตรวจสอบจำนวนคิว"))
                                      -> add(new ImagemapMessageBuilder(
                               $imageMapUrl,
                               'Select Branch',
-                              new BaseSizeBuilder(2423,1040),
+                              new BaseSizeBuilder(900,1040),
                               array(
                                   new ImagemapMessageActionBuilder(
                                       'QUEUE_SIAM',
-                                      new AreaBuilder(0,298,1040,290)
+                                      new AreaBuilder(530,189,500,150)
                                       ),
                                   new ImagemapMessageActionBuilder(
                                       'QUEUE_SWU',
-                                      new AreaBuilder(0,604,1040,290)
+                                      new AreaBuilder(10,190,500,150)
                                       ),
                                   new ImagemapMessageActionBuilder(
                                       'QUEUE_SASIN',
-                                      new AreaBuilder(0,907,1040,290)
+                                      new AreaBuilder(530,358,500,150)
                                       ),
                                   new ImagemapMessageActionBuilder(
                                       'QUEUE_SAMYAN',
-                                      new AreaBuilder(0,1215,1040,290)
+                                      new AreaBuilder(10,360,500,150)
                                       ),
                                   new ImagemapMessageActionBuilder(
                                       'QUEUE_KU',
-                                      new AreaBuilder(0,1523,1040,290)
+                                      new AreaBuilder(530,530,500,150)
                                       ),
                                   new ImagemapMessageActionBuilder(
                                       'QUEUE_SALAYA',
-                                      new AreaBuilder(0,1824,1040,290)
+                                      new AreaBuilder(10,530,500,150)
                                       ),
                                   new ImagemapMessageActionBuilder(
                                       'QUEUE_CMU',
-                                      new AreaBuilder(0,2130,1040,290)
+                                      new AreaBuilder(530,700,500,150)
                                       )
 
                               )));
