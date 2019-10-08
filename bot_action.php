@@ -461,7 +461,7 @@ if(!is_null($events)){
                             );
                           break;
 
-                        case "queuess" :
+                        case "queue" :
 
                           $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/queue.png?_ignored=';
 
