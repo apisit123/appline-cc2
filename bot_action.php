@@ -1,78 +1,6 @@
 <?php
-///////////// ส่วนของการเรียกใช้งาน class ผ่าน namespace
-use LINE\LINEBot;
-use LINE\LINEBot\HTTPClient;
-use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-use LINE\LINEBot\Event;
-use LINE\LINEBot\Event\BaseEvent;
-use LINE\LINEBot\Event\MessageEvent;
-use LINE\LINEBot\Event\AccountLinkEvent;
-use LINE\LINEBot\Event\MemberJoinEvent; 
-use LINE\LINEBot\MessageBuilder;
-use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
-use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
-use LINE\LINEBot\MessageBuilder\ImageMessageBuilder;
-use LINE\LINEBot\MessageBuilder\LocationMessageBuilder;
-use LINE\LINEBot\MessageBuilder\AudioMessageBuilder;
-use LINE\LINEBot\MessageBuilder\VideoMessageBuilder;
-use LINE\LINEBot\ImagemapActionBuilder;
-use LINE\LINEBot\ImagemapActionBuilder\AreaBuilder;
-use LINE\LINEBot\ImagemapActionBuilder\ImagemapMessageActionBuilder ;
-use LINE\LINEBot\ImagemapActionBuilder\ImagemapUriActionBuilder;
-use LINE\LINEBot\MessageBuilder\Imagemap\BaseSizeBuilder;
-use LINE\LINEBot\MessageBuilder\ImagemapMessageBuilder;
-use LINE\LINEBot\MessageBuilder\MultiMessageBuilder;
-use LINE\LINEBot\TemplateActionBuilder;
-use LINE\LINEBot\TemplateActionBuilder\DatetimePickerTemplateActionBuilder;
-use LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder;
-use LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder;
-use LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateMessageBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselTemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselTemplateBuilder;
-use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuilder;
-use LINE\LINEBot\QuickReplyBuilder;
-use LINE\LINEBot\QuickReplyBuilder\QuickReplyMessageBuilder;
-use LINE\LINEBot\QuickReplyBuilder\ButtonBuilder\QuickReplyButtonBuilder;
-use LINE\LINEBot\TemplateActionBuilder\CameraRollTemplateActionBuilder;
-use LINE\LINEBot\TemplateActionBuilder\CameraTemplateActionBuilder;
-use LINE\LINEBot\TemplateActionBuilder\LocationTemplateActionBuilder;
-use LINE\LINEBot\RichMenuBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
 
-use LINE\LINEBot\Constant\Flex\ComponentIconSize;
-use LINE\LINEBot\Constant\Flex\ComponentImageSize;
-use LINE\LINEBot\Constant\Flex\ComponentImageAspectRatio;
-use LINE\LINEBot\Constant\Flex\ComponentImageAspectMode;
-use LINE\LINEBot\Constant\Flex\ComponentFontSize;
-use LINE\LINEBot\Constant\Flex\BubleContainerSize;
-use LINE\LINEBot\Constant\Flex\ComponentFontWeight;
-use LINE\LINEBot\Constant\Flex\ComponentMargin;
-use LINE\LINEBot\Constant\Flex\ComponentSpacing;
-use LINE\LINEBot\Constant\Flex\ComponentButtonStyle;
-use LINE\LINEBot\Constant\Flex\ComponentButtonHeight;
-use LINE\LINEBot\Constant\Flex\ComponentSpaceSize;
-use LINE\LINEBot\Constant\Flex\ComponentGravity;
-use LINE\LINEBot\MessageBuilder\FlexMessageBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\BubbleStylesBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\BlockStyleBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ContainerBuilder\BubbleContainerBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ContainerBuilder\CarouselContainerBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\BoxComponentBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\ButtonComponentBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\IconComponentBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\ImageComponentBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SpacerComponentBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\FillerComponentBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SeparatorComponentBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\TextComponentBuilder;
-use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SpanComponentBuilder;
+include_once("line_lib.php");
 
 define("siam", "สยาม");
 define("swu", "มศว");
@@ -528,55 +456,73 @@ if(!is_null($events)){
                           include_once("command.php");
 
 
-                          
+                          case (preg_match('/(สั่ง)/', $userMessage) ? true : false):
 
+                            $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
+                            
+                            $replyData = new MultiMessageBuilder();
+                            
 
-                        case "fl": // ส่วนทดสอบโต้ตอบข้อควมม flex
-                            $textReplyMessage = new BubbleContainerBuilder(
-                                "ltr",  // กำหนด NULL หรือ "ltr" หรือ "rtl"
-                                new BoxComponentBuilder(
-                                    "vertical",
-                                    array(
-                                        // text, flex, margin, size, align. gravity, warp, maxline, weight, color, action
-                                        new TextComponentBuilder("Queue SIAM",NULL,NULL,"xxl","center","center")
-                                    )
-                                ),
-                                NULL,
-
-                                new BoxComponentBuilder(
-                                    "horizontal",
-                                    array(
-                                      new BoxComponentBuilder(
-                                          "vertical",
+                            $replyData -> add(new ImagemapMessageBuilder(
+                                            $imageMapUrl,
+                                            'HOW TO ORDER',
+                                            new BaseSizeBuilder(1486,1040),
+                                            array(
+                                              new ImagemapMessageActionBuilder(
+                                                  '...',
+                                                  new AreaBuilder(0,0,1,1)
+                                                  )
+                                            )
+                                          ))
+                                      -> add(new ImagemapMessageBuilder(
+                                          "https://storage.googleapis.com/toofast-bucket/linebot/PokeNowwwwwwwwwwwwwwwwwwwwwwwwww.png?_ignored=",
+                                          'จิ้มเล๊ยยยยยยยยยยยยยยยยยยยยยยยยย',
+                                          new BaseSizeBuilder(700,1040),
                                           array(
-                                              new ImageComponentBuilder(
-                                                "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",NULL,NULL,NULL,NULL,"full",NULL,"cover")
+                                            new ImagemapUriActionBuilder(
+                                                "line://app/1615865486-AoPxqqQr",
+                                                new AreaBuilder(0,0,1040,700)
+                                                )
                                           )
-                                      ),
-                                      new BoxComponentBuilder(
-                                          "vertical",
+                                        ));                                      
+
+                                        
+
+                        break;
+
+                        case (preg_match("/[^0-9]/", $userMessage) ? true : false):
+
+                            $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
+                            
+                            $replyData = new MultiMessageBuilder();
+                            
+
+                            $replyData -> add(new ImagemapMessageBuilder(
+                                            $imageMapUrl,
+                                            'HOW TO ORDER',
+                                            new BaseSizeBuilder(1486,1040),
+                                            array(
+                                              new ImagemapMessageActionBuilder(
+                                                  '...',
+                                                  new AreaBuilder(0,0,1,1)
+                                                  )
+                                            )
+                                          ))
+                                      -> add(new ImagemapMessageBuilder(
+                                          "https://storage.googleapis.com/toofast-bucket/linebot/PokeNowwwwwwwwwwwwwwwwwwwwwwwwww.png?_ignored=",
+                                          'จิ้มเล๊ยยยยยยยยยยยยยยยยยยยยยยยยย',
+                                          new BaseSizeBuilder(700,1040),
                                           array(
-                                              new TextComponentBuilder("This is Footer1"),
-                                              new TextComponentBuilder("This is Footer2"),
-                                              new TextComponentBuilder("This is Footer3")
+                                            new ImagemapUriActionBuilder(
+                                                "line://app/1615865486-AoPxqqQr",
+                                                new AreaBuilder(0,0,1040,700)
+                                                )
                                           )
-                                      )
-                                     
-                                    )
-                                ),
-                                new BoxComponentBuilder(
-                                    "vertical",
-                                    array(
-                                        new TextComponentBuilder("This is Footer")
-                                    )
-                                ),
-                                NULL
-                            );
+                                        ));                                      
 
-                            $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);
+                                        
 
-                                                                                         
-                            break;
+                        break;
 
 
                         case (preg_match('/(queue_)/', $userMessage) ? true : false):
@@ -608,124 +554,9 @@ if(!is_null($events)){
                                        -> add(new TextMessageBuilder($txt));
 
                         break;
-
-
-                        case (preg_match('/^cr-/',$userMessage) ? true : false):
-                            $paramRichMenu = explode(">",$userMessage);
-                            if(!isset($paramRichMenu) || !is_array($paramRichMenu) || count($paramRichMenu)<3){
-                                exit;
-                            }
-                            $patternSet = $paramRichMenu[0];
-                            $numberID = $paramRichMenu[1];
-                            $actionSet = $paramRichMenu[2];
-                            $actionArr_prepare = array();
-                            if(isset($actionSet)){
-                                $actionArr_prepare = explode(")",$actionSet);
-                                array_pop($actionArr_prepare);
-                            }
-                            $imgTypePattern = str_replace("cr-","",$patternSet);
-                            $areaBound_arr = array(
-                                "a"=>array(0,0,833,843),
-                                "b"=>array(833,0,833,843),
-                                "c"=>array(1666,0,834,843),
-                                "d"=>array(0,843,833,843),
-                                "e"=>array(833,843,833,843),
-                                "f"=>array(1666,843,834,843),
-                                "g"=>array(0,0,1250,843),
-                                "h"=>array(1250,0,1250,843),
-                                "i"=>array(0,843,1250,843),
-                                "j"=>array(1250,843,1250,843),
-                                "k"=>array(0,0,2500,843),
-                                "l"=>array(0,0,1666,1686),
-                                "m"=>array(0,843,2500,843),
-                                "n"=>array(0,0,1250,1686),
-                                "o"=>array(1250,0,1250,1686),
-                                "p"=>array(0,0,2500,1686)
-                            );
-                            $imgTypePatternArea_arr = array(
-                                "1"=>array("a","b","c","d","e","f"),
-                                "2"=>array("g","h","i","j"),
-                                "3"=>array("k","d","e","f"),
-                                "4"=>array("l","c","f"),
-                                "5"=>array("k","m"),
-                                "6"=>array("n","o"),
-                                "7"=>array("p")
-                            );
-                             
-                            function makeFRM($imgType){
-                                global $areaBound_arr,$imgTypePatternArea_arr,$actionSet,$actionArr_prepare;
-                                $dataArr = array();
-                                $Area_arr = $imgTypePatternArea_arr[$imgType];
-                                for($i=1;$i<=count($imgTypePatternArea_arr[$imgType]);$i++){                                 
-                                    if(preg_match('/^p\(/',$actionArr_prepare[$i-1])){
-                                        list($ac,$data) = explode("(",$actionArr_prepare[$i-1]);
-                                        $actionVal = new PostbackTemplateActionBuilder('p',$data);
-                                    }elseif(preg_match('/^m\(/',$actionArr_prepare[$i-1])){
-                                        list($ac,$data) = explode("(",$actionArr_prepare[$i-1]);
-                                        $actionVal = new MessageTemplateActionBuilder('m',$data);                                   
-                                    }elseif(preg_match('/^u\(/',$actionArr_prepare[$i-1])){
-                                        list($ac,$data) = explode("(",$actionArr_prepare[$i-1]);
-                                        $actionVal = new UriTemplateActionBuilder('u',$data);   
-                                    }elseif(preg_match('/^c\(/',$actionArr_prepare[$i-1])){
-                                        list($ac,$data) = explode("(",$actionArr_prepare[$i-1]);
-                                        $actionVal = new UriTemplateActionBuilder('u',"line://nv/camera/");     
-                                    }elseif(preg_match('/^cs\(/',$actionArr_prepare[$i-1])){
-                                        list($ac,$data) = explode("(",$actionArr_prepare[$i-1]);
-                                        $actionVal = new UriTemplateActionBuilder('u',"line://nv/cameraRoll/single/");  
-                                    }elseif(preg_match('/^cm\(/',$actionArr_prepare[$i-1])){
-                                        list($ac,$data) = explode("(",$actionArr_prepare[$i-1]);
-                                        $actionVal = new UriTemplateActionBuilder('u',"line://nv/cameraRoll/multi/");                                                       
-                                    }elseif(preg_match('/^l\(/',$actionArr_prepare[$i-1])){
-                                        list($ac,$data) = explode("(",$actionArr_prepare[$i-1]);
-                                        $actionVal = new UriTemplateActionBuilder('u',"line://nv/location");                                            
-                                    }elseif(preg_match('/^d\(/',$actionArr_prepare[$i-1])){
-                                        list($ac,$data) = explode("(",$actionArr_prepare[$i-1]);
-                                        $actionVal = new DatetimePickerTemplateActionBuilder('d',$data,'datetime');
-                                    }elseif(preg_match('/^n\(/',$actionArr_prepare[$i-1])){
-                                        $actionVal = NULL;
-                                        continue;
-                                    }else{
-                                        $actionVal = NULL;
-                                        continue;
-                                    }
-                                    $patternLetter = $Area_arr[$i-1];
-                                    array_push($dataArr,
-                                            new RichMenuAreaBuilder(
-                                                new RichMenuAreaBoundsBuilder(...$areaBound_arr[$patternLetter]),$actionVal
-                                            )                   
-                                    );
-                                }
-                                return $dataArr;                        
-                            }
-//                          $arrayRichMenu = makeFRM();
-                            // $sizeBuilder, $selected, $name, $chatBarText, $areaBuilders // 1686, 843.  // 2500
-                            // ($x, $y, $width, $height)
-                            $_idRichMenu = $imgTypePattern."-".$numberID;
-                            $respRichMenu = $bot->createRichMenu(
-                                new RichMenuBuilder(
-                                    new RichMenuSizeBuilder(1686,2500),true,"Rich Menu $_idRichMenu",
-                                    "เมนู",
-                                    makeFRM($imgTypePattern)
-                                )
-                            );
-                            // ทำอื่นๆ 
-                            $textReplyMessage = " การสร้าง Rich Menu ".$respRichMenu->getRawBody()." Res = ".json_encode($dataArr);
-                            $replyData = new TextMessageBuilder($textReplyMessage);                                     
-                            break;                              
-                                                                                      
-                        case "ot":
-                            // ทำอื่นๆ 
-                            break;
-                        case "l": // เงื่อนไขทดสอบถ้ามีใครพิมพ์ L ใน GROUP / ROOM แล้วให้ bot ออกจาก GROUP / ROOM
-                                $sourceId = $eventObj->getEventSourceId();
-                                if($eventObj->isGroupEvent()){
-                                    $bot->leaveGroup($sourceId);
-                                }
-                                if($eventObj->isRoomEvent()){
-                                    $bot->leaveRoom($sourceId);  
-                                }                                                                                         
-                            break;                          
-                        case "qr":
+                           
+                                                                                                          
+                        case "qrss":
                             $postback = new PostbackTemplateActionBuilder(
                                 'Postback', // ข้อความแสดงในปุ่ม
                                 http_build_query(array(
