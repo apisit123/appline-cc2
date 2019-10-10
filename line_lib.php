@@ -74,3 +74,5 @@ use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\FillerComponentBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SeparatorComponentBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\TextComponentBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SpanComponentBuilder;
+
+?>
