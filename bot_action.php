@@ -105,9 +105,11 @@ if(!is_null($events)){
     // ถ้า bot ออกจาก สนทนา จะไม่สามารถส่งข้อความกลับได้ เนื่องจากไม่มี replyToken
     if(!is_null($eventLeave)){
 
-        m_log("Unfollow event by id : ".$userId."\n..................name : ".$profile['displayName']."\n..................image : ".$profile['pictureUrl']); 
+        error_log("Unfollow event by id : ".$userId);
+        error_log("................name : ".$profile['displayName']);
+        error_log("...............image : ".$profile['pictureUrl']);
  
-        $replyData = new TextMessageBuilder("ขอบคุณที่เป็นเพื่อนกับเรานะคะ\nหากมีสิ่งใดที่ทำให้ลูกค้าไม่พึงพอใจ\nสามารถแจ้งได้ที่กล่องแสดงความคิดเห็นหน้าเคาเตอร์นะคะ");   
+         $replyData = new TextMessageBuilder("ขอบคุณที่เป็นเพื่อนกับเรานะคะ\nหากมีสิ่งใดที่ทำให้ลูกค้าไม่พึงพอใจ\nสามารถแจ้งได้ที่กล่องแสดงความคิดเห็นหน้าเคาเตอร์นะคะ");   
     }   
      
     // ถ้า bot ถูกเพื่มเป้นเพื่อน หรือถูกติดตาม หรือ ยกเลิกการ บล็อก
@@ -745,36 +747,4 @@ if(!is_null($events)){
         }
     }
 }
-
-
-
-
-
-
-//define function name  
-function m_log($arMsg){  
-    //define empty string                                 
-    $stEntry="";  
-    //get the event occur date time,when it will happened  
-    $arLogData['event_datetime']='['.date('D Y-m-d h:i:s A').'] [client '.$_SERVER['REMOTE_ADDR'].']';  
-    //if message is array type  
-    if(is_array($arMsg)) {  
-        //concatenate msg with datetime  
-        foreach($arMsg as $msg)  
-        $stEntry.=$arLogData['event_datetime']." ".$msg."\r\n";  
-    }else{   //concatenate msg with datetime  
-        
-        $stEntry.=$arLogData['event_datetime']." ".$arMsg."\r\n";  
-    }  
-    //create file with current date name  
-    $stCurLogFileName='logs/log_'.date('Ymd').'.txt';  
-    //open the file append mode,dats the log file will create day wise  
-    $fHandler=fopen($stCurLogFileName,'a+');  
-    //write the info into the file  
-    fwrite($fHandler,$stEntry);  
-    //close handler  
-    fclose($fHandler);  
-} 
-
-
 ?>
