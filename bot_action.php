@@ -139,7 +139,7 @@ if(!is_null($events)){
     if(!is_null($eventUnfollow)){
 
         error_log("Unfollow event by id : ".$userId);
-        error_log("................name : ".$profile['displayName']);
+        error_log("................name : ".$profile);
         error_log("...............image : ".$profile['pictureUrl']);
  
         $replyData = new TextMessageBuilder("ขอบคุณที่เป็นเพื่อนกับเรานะคะ\nหากมีสิ่งใดที่ทำให้ลูกค้าไม่พึงพอใจ\nสามารถแจ้งได้ที่กล่องแสดงความคิดเห็นหน้าเคาเตอร์นะคะ");   
