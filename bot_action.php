@@ -105,11 +105,7 @@ if(!is_null($events)){
     // ถ้า bot ออกจาก สนทนา จะไม่สามารถส่งข้อความกลับได้ เนื่องจากไม่มี replyToken
     if(!is_null($eventLeave)){
 
-        error_log("Unfollow event by id : ".$userId);
-        error_log("................name : ".$profile['displayName']);
-        error_log("...............image : ".$profile['pictureUrl']);
- 
-         $replyData = new TextMessageBuilder("ขอบคุณที่เป็นเพื่อนกับเรานะคะ\nหากมีสิ่งใดที่ทำให้ลูกค้าไม่พึงพอใจ\nสามารถแจ้งได้ที่กล่องแสดงความคิดเห็นหน้าเคาเตอร์นะคะ");   
+
     }   
      
     // ถ้า bot ถูกเพื่มเป้นเพื่อน หรือถูกติดตาม หรือ ยกเลิกการ บล็อก
@@ -141,6 +137,12 @@ if(!is_null($events)){
      
     // ถ้า bot ถูกบล็อก หรือเลิกติดตาม จะไม่สามารถส่งข้อความกลับได้ เนื่องจากไม่มี replyToken
     if(!is_null($eventUnfollow)){
+
+        error_log("Unfollow event by id : ".$userId);
+        error_log("................name : ".$profile['displayName']);
+        error_log("...............image : ".$profile['pictureUrl']);
+ 
+        $replyData = new TextMessageBuilder("ขอบคุณที่เป็นเพื่อนกับเรานะคะ\nหากมีสิ่งใดที่ทำให้ลูกค้าไม่พึงพอใจ\nสามารถแจ้งได้ที่กล่องแสดงความคิดเห็นหน้าเคาเตอร์นะคะ");   
  
     }       
      
