@@ -611,7 +611,8 @@ if(!is_null($events)){
                         case (preg_match('(wi)', $userMessage) ? true : false):
                             $replyData = new MultiMessageBuilder();
                             $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
-                                        -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"));
+                                        -> add(new TextMessageBuilder("หากลูกค้าต้องการสอบถามรหัส wifi กรุณาติดต่อที่เคาน์เตอร์แคชเชียร์นะคะ"))
+                                        -> add(new TextMessageBuilder("Too Fast Order ขอบคุณค่ะ"))
                         break;
 
 
@@ -692,7 +693,7 @@ if(!is_null($events)){
                         $replyData = new MultiMessageBuilder();
                         $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
                                     -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"))
-                                    -> add(new TextMessageBuilder("สำหรับการจองห้องประชุม\n   - สามย่าน โทร 086-300-9955\n   - สยาม โทร 081-899-1551\n   - เกษตร โทร 097-158-9000\nสาขาอื่นๆ ที่ ศาลายา, มศว, เชียงใหม่\nทุกสาขาเปิด 24 ชั่วโมง!"));
+                                    -> add(new TextMessageBuilder("สำหรับการจองห้องประชุม\n   - สามย่าน โทร 086-300-9955\n   - สยาม โทร 081-899-1551\n   - เกษตร โทร 097-158-9000\nสาขาอื่นๆ ที่ ศาลายา, มศว, เชียงใหม่\nทุกสาขาเปิด 24 ชั่วโมงค่ะ!"));
 
                                     
 
