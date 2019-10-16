@@ -612,7 +612,7 @@ if(!is_null($events)){
                             $replyData = new MultiMessageBuilder();
                             $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
                                         -> add(new TextMessageBuilder("หากลูกค้าต้องการสอบถามรหัส wifi กรุณาติดต่อที่เคาน์เตอร์แคชเชียร์นะคะ"))
-                                        -> add(new TextMessageBuilder("Too Fast Order ขอบคุณค่ะ"))
+                                        -> add(new TextMessageBuilder("Too Fast Order ขอบคุณค่ะ"));
                         break;
 
 
@@ -718,7 +718,7 @@ if(!is_null($events)){
                     $result = curl_exec( $ch );
                     curl_close( $ch );
                     exit;
-                    
+
                 }
                 break;                                                  
             default:
