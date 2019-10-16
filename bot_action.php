@@ -695,7 +695,6 @@ if(!is_null($events)){
                                     -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"))
                                     -> add(new TextMessageBuilder("สำหรับการจองห้องประชุม\n   - สามย่าน โทร 086-300-9955\n   - สยาม โทร 081-899-1551\n   - เกษตร โทร 097-158-9000\nสาขาอื่นๆ ที่ ศาลายา, มศว, เชียงใหม่\nทุกสาขาเปิด 24 ชั่วโมงค่ะ!"));
 
-
                         $url = "https://bots.dialogflow.com/line/80a5e0d6-016f-46f5-b8b8-0302c02896b3/webhook";
                         $headers = getallheaders();
                         $headers['Host'] = "bots.dialogflow.com";
@@ -717,7 +716,8 @@ if(!is_null($events)){
                         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
                         $result = curl_exec( $ch );
                         curl_close( $ch );
-                        
+                        exit;
+
                         break;                                      
                 }
                 break;                                                  
