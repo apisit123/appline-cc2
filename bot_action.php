@@ -608,18 +608,11 @@ if(!is_null($events)){
                         break;
 
 
-                        case (preg_match('(wifi)', $userMessage) ? true : false):
+                        case (preg_match('(wi)', $userMessage) ? true : false):
                             $replyData = new MultiMessageBuilder();
                             $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
                                         -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"));
                         break;
-
-                        case (preg_match('(wi-fi)', $userMessage) ? true : false):
-                            $replyData = new MultiMessageBuilder();
-                            $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
-                                        -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"));
-                        break;
-
 
 
                         case (preg_match('/(queue_)/', $userMessage) ? true : false):
@@ -695,7 +688,7 @@ if(!is_null($events)){
                             break;                                                                         
                     default:
                         $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
-                        
+
                         $replyData = new MultiMessageBuilder();
                         $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
                                     -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"));
