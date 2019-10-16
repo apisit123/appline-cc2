@@ -364,7 +364,7 @@ if(!is_null($events)){
             case 'text':  // ถ้าเป็นข้อความ
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
-                        case "update" :
+                        case (preg_match('(update)', $userMessage) ? true : false):
                           $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
                           
                           if(json_encode($respRichMenu) == "{}"){
@@ -401,6 +401,12 @@ if(!is_null($events)){
                         case "history" :
 
                           $replyData = new TextMessageBuilder("ฟังก์ชัน \"history\" ยังไม่เปิดใช้บริการค่ะ"); 
+
+                          break;
+
+                        case "faq" :
+
+                          $replyData = new TextMessageBuilder(""); 
 
                           break;
 
@@ -601,72 +607,16 @@ if(!is_null($events)){
 
                         break;
 
-/**     
-  public function __construct(
-      $text,
-      $flex = null,
-      $margin = null,
-      $size = null,
-      $align = null,
-      $gravity = null,
-      $wrap = null,
-      $maxLines = null,
-      $weight = null,
-      $color = null,
-      $actionBuilder = null
-  )
-*/
 
-// /** @var ComponentLayout */
-//     private $layout;
-//     /** @var ComponentBuilder[] */
-//     private $componentBuilders;
-//     /** @var int */
-//     private $flex;
-//     /** @var ComponentSpacing */
-//     private $spacing;
-//     /** @var ComponentMargin */
-//     private $margin;
-//     /** @var TemplateActionBuilder */
-//     private $actionBuilder;
+                        case (preg_match('(wifi)', $userMessage) ? true : false):
 
+                            
+                            $replyData = new MultiMessageBuilder();
+                            $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบตอบกลับอัตโนมัติ"))
+                                        -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"));
+                                                                        
 
-
-//     /** @var string */
-//     private $paddingAll;
-//     /** @var string */
-//     private $paddingTop;
-//     /** @var string */
-//     private $paddingBottom;
-//     /** @var string */
-//     private $paddingStart;
-//     /** @var string */
-//     private $paddingEnd;
-//     /** @var string */
-
-//     private $backgroundColor;
-//     /** @var string */
-//     private $borderColor;
-//     /** @var string */
-//     private $borderWidth;
-//     /** @var string */
-//     private $cornerRadius;
-//     /** @var string */
-//     private $width;
-//     /** @var string */
-//     private $height;
-//     /** @var string */
-//     private $position;
-//     /** @var string */
-//     private $offsetTop;
-//     /** @var string */
-//     private $offsetBottom;
-//     /** @var string */
-//     private $offsetStart;
-//     /** @var string */
-//     private $offsetEnd;
-//     /** @var array */
-//     private $component;
+                        break;
 
 
 
