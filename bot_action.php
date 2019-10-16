@@ -609,13 +609,15 @@ if(!is_null($events)){
 
 
                         case (preg_match('(wifi)', $userMessage) ? true : false):
-
-                            
                             $replyData = new MultiMessageBuilder();
-                            $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบตอบกลับอัตโนมัติ"))
+                            $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
                                         -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"));
-                                                                        
+                        break;
 
+                        case (preg_match('(wi-fi)', $userMessage) ? true : false):
+                            $replyData = new MultiMessageBuilder();
+                            $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
+                                        -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"));
                         break;
 
 
@@ -716,7 +718,12 @@ if(!is_null($events)){
                         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
                         $result = curl_exec( $ch );
                         curl_close( $ch );
-                        exit;       
+                        exit;
+
+                        $replyData = new MultiMessageBuilder();
+                        $replyData  -> add(new TextMessageBuilder("Line@ Too Fast Order เป็นระบบอัตโนมัติ"))
+                                    -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"));
+
                         break;                                      
                 }
                 break;                                                  
