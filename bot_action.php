@@ -695,30 +695,6 @@ if(!is_null($events)){
                                     -> add(new TextMessageBuilder("หากลูกค้ามีข้อสงสัยเพิ่มเติม กรุณาติดต่อที่ Cashier แต่ละสาขานะคะ ^^"))
                                     -> add(new TextMessageBuilder("สำหรับการจองห้องประชุม\n   - สามย่าน โทร 086-300-9955\n   - สยาม โทร 081-899-1551\n   - เกษตร โทร 097-158-9000\nสาขาอื่นๆ ที่ ศาลายา, มศว, เชียงใหม่\nทุกสาขาเปิด 24 ชั่วโมงค่ะ!"));
                         break;                                      
-
-                    $url = "https://bots.dialogflow.com/line/80a5e0d6-016f-46f5-b8b8-0302c02896b3/webhook";
-                    $headers = getallheaders();
-                    $headers['Host'] = "bots.dialogflow.com";
-                    $json_headers = array();
-                    foreach($headers as $k=>$v){
-                        $json_headers[]=$k.":".$v;
-                    }
-                    $inputJSON = file_get_contents('php://input');
-                    // // ส่วนของการส่งการแจ้งเตือนผ่านฟังก์ชั่น cURL
-                    $ch = curl_init();
-                    curl_setopt( $ch, CURLOPT_URL, $url);
-                    curl_setopt( $ch, CURLOPT_POST, 1);
-                    curl_setopt( $ch, CURLOPT_BINARYTRANSFER, true);
-                    curl_setopt( $ch, CURLOPT_POSTFIELDS, $inputJSON);
-                    curl_setopt( $ch, CURLOPT_HTTPHEADER, $json_headers);
-                    curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 | 2 ถ้าเว็บเรามี ssl สามารถเปลี่ยนเป้น 2
-                    curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 1); // 0 | 1 ถ้าเว็บเรามี ssl สามารถเปลี่ยนเป้น 1
-                    curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
-                    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
-                    $result = curl_exec( $ch );
-                    curl_close( $ch );
-                    exit;
-
                 }
                 break;                                                  
             default:
