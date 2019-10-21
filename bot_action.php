@@ -546,8 +546,7 @@ if(!is_null($events)){
                                                 new TextComponentBuilder("Chewing Gum", 0, NULL, "sm", NULL, NULL, NULL, NULL, NULL,"#555555"),
                                                 new TextComponentBuilder("$0.99", NULL, NULL, "sm", "end", NULL, NULL, NULL, NULL,"#111111")
                                             )
-                                        ),
-                            ;
+                                        );
 
                             $textReplyMessage = new BubbleContainerBuilder(
                                 "ltr",NULL,NULL,
