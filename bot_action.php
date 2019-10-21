@@ -595,15 +595,15 @@ if(!is_null($events)){
                             $arr[] = new BoxComponentBuilder(
                                         "horizontal",
                                         array(
-                                            new TextComponentBuilder("   "."Order ID", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
-                                            new TextComponentBuilder("CCOR1909-03531"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                            new TextComponentBuilder("   "."Order ID", 0, "xxl", "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
+                                            new TextComponentBuilder("CCOR1909-03531", NULL, "xxl", "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
                                         )
                                     );
                             $arr[] = new BoxComponentBuilder(
                                         "horizontal",
                                         array(
-                                            new TextComponentBuilder("   "."Payment", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
-                                            new TextComponentBuilder("Rabbit LINE Pay"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                            new TextComponentBuilder("Payment", 0, "xxl", "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
+                                            new TextComponentBuilder("Rabbit LINE Pay", NULL, "xxl", "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
                                         )
                                     );
 
