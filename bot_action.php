@@ -570,7 +570,8 @@ if(!is_null($events)){
                                  new BoxComponentBuilder(
                                     "vertical",
                                     array(
-                                        $arr
+                                        $arr[0],
+                                        $arr[1]
                                     ),
                                     NULL,
                                     "sm",
