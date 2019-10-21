@@ -540,9 +540,6 @@ if(!is_null($events)){
 
                           case "reciept":
 
-                          $array = array("Jon","Smith");
-
-
                             $textReplyMessage = new BubbleContainerBuilder(
                                 "ltr",NULL,NULL,
                                 new BoxComponentBuilder(
@@ -571,6 +568,8 @@ if(!is_null($events)){
                                     "xxl"
                                 )
                             );
+
+                            error_log($textReplyMessage);
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);
 
 
