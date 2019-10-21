@@ -611,10 +611,19 @@ if(!is_null($events)){
                             
                             $arr[] = new SeparatorComponentBuilder("xl");
 
+                            $arr[] = new SpacerComponentBuilder()
+
                             $arr[] = new BoxComponentBuilder(
                                         "vertical",
                                         array(
-                                            new TextComponentBuilder("you can revieve the order by using this code instead of a reciept", NULL, NULL, "xs", "center", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                            new ImageComponentBuilder("https://scdn.line-apps.com/n/channel_devcenter/img/fx/linecorp_code_withborder.png", NULL, NULL, NULL, NULL, "xl", NULL, "cover")
+                                        )
+                                    );
+
+                            $arr[] = new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                            new TextComponentBuilder("you can revieve the order by using this code instead of a reciept", NULL, "xxl", "xs", "center", NULL, TRUE, NULL, NULL,"#aaaaaa")
                                         )
                                     );
 
