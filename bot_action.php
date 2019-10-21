@@ -551,7 +551,7 @@ if(!is_null($events)){
                                     );
                             }
 
-                            $arr[] = new SeparatorComponentBuilder();
+                            $arr[] = new SeparatorComponentBuilder("xl");
 
 
                             $arr[] = new BoxComponentBuilder(
@@ -588,6 +588,33 @@ if(!is_null($events)){
                                         array(
                                             new TextComponentBuilder("   "."Total", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
                                             new TextComponentBuilder("33"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        )
+                                    );
+                            $arr[] = new SeparatorComponentBuilder("xl");
+
+                            $arr[] = new BoxComponentBuilder(
+                                        "horizontal",
+                                        array(
+                                            new TextComponentBuilder("   "."Order ID", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
+                                            new TextComponentBuilder("CCOR1909-03531"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                        )
+                                    );
+                            $arr[] = new BoxComponentBuilder(
+                                        "horizontal",
+                                        array(
+                                            new TextComponentBuilder("   "."Payment", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
+                                            new TextComponentBuilder("Rabbit LINE Pay"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                        )
+                                    );
+
+
+                            
+                            $arr[] = new SeparatorComponentBuilder("xl");
+
+                            $arr[] = new BoxComponentBuilder(
+                                        "vertical",
+                                        array(
+                                            new TextComponentBuilder("you can revieve the order by using this code instead of a reciept", NULL, NULL, "xs", "center", NULL, TRUE, NULL, NULL,"#aaaaaa")
                                         )
                                     );
 
