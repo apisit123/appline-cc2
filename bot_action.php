@@ -614,7 +614,7 @@ if(!is_null($events)){
                             $arr[] = new BoxComponentBuilder(
                                         "vertical",
                                         array(
-                                            new ImageComponentBuilder("https://scdn.line-apps.com/n/channel_devcenter/img/fx/linecorp_code_withborder.png", NULL, NULL, NULL, NULL, "xl", NULL, "cover")
+                                            new ImageComponentBuilder("https://scdn.line-apps.com/n/channel_devcenter/img/fx/linecorp_code_withborder.png", NULL, "xxl", NULL, NULL, "xl", NULL, "cover")
                                         )
                                     );
 
