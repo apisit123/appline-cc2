@@ -544,7 +544,7 @@ if(!is_null($events)){
                             foreach ($cars as $key => $value) {
                                 # code...
 
-                                $arr[$key] = new BoxComponentBuilder(
+                                $arr[] = new BoxComponentBuilder(
                                     "horizontal",
                                     array(
                                         new TextComponentBuilder($value, 0, NULL, "sm", NULL, NULL, NULL, NULL, NULL,"#555555"),
