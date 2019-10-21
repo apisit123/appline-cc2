@@ -549,7 +549,23 @@ if(!is_null($events)){
                                         new TextComponentBuilder("RECEIPT", NULL, NULL, "sm", NULL, NULL, NULL, NULL, "bold","#1DB446"),
                                         new TextComponentBuilder("Brown Store", NULL, "md", "xxl", NULL, NUll, NULL, NULL, "bold"),
                                         new TextComponentBuilder("Miraina Tower, 4-1-6 Shinjuku, Tokyo", NULL, NULL, "xs", NULL, NUll, true, NULL, NULL,"#aaaaaa"),
+                                        new SeparatorComponentBuilder()
                                     )
+                                ),
+                                 new BoxComponentBuilder(
+                                    "vertical",
+                                    array(
+                                        new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("Chewing Gum", 0, NULL, "sm", NULL, NULL, NULL, NULL, NULL,"#555555"),
+                                                new TextComponentBuilder("$0.99", NULL, NULL, "sm", "end", NULL, NULL, NULL, NULL,"#111111")
+                                            )
+                                        )
+                                    ),
+                                    NULL,
+                                    "sm",
+                                    "xxl"
                                 )
                             );
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);
