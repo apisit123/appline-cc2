@@ -628,7 +628,7 @@ if(!is_null($events)){
                             
 
                             $textReplyMessage = new BubbleContainerBuilder(
-                                "ltr",NULL,NULL
+                                "ltr",NULL,NULL,
                                 new BoxComponentBuilder(
                                     "baseline",
                                     array(
