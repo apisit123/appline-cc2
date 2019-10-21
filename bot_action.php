@@ -542,13 +542,13 @@ if(!is_null($events)){
                             $cars = array("น้ำเปล่า เย็น ขวด", "ดีลักซ์ เฟรนซ์ฟรายส์ (Deluxe French Fries)", "Toyota");
 
                             foreach ($cars as $key => $value) {
-                                new BoxComponentBuilder(
-                                    "horizontal",
-                                    array(
-                                        new TextComponentBuilder("   1x ".$value, 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                        new TextComponentBuilder("20.0  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                    )
-                                );
+                                $arr[] = new BoxComponentBuilder(
+                                        "horizontal",
+                                        array(
+                                            new TextComponentBuilder("   1x ".$value, 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("20.0  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        )
+                                    );
                             }
 
                             $arr[] = new SeparatorComponentBuilder();
@@ -563,7 +563,7 @@ if(!is_null($events)){
                             $arr[] = new BoxComponentBuilder(
                                         "horizontal",
                                         array(
-                                            new TextComponentBuilder("   "."Promotion "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("   "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
                                             new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
                                         )
                                     );
