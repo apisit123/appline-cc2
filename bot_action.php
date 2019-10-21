@@ -553,11 +553,12 @@ if(!is_null($events)){
 
                             $arr[] = new SeparatorComponentBuilder();
 
+
                             $arr[] = new BoxComponentBuilder(
                                         "horizontal",
                                         array(
-                                            new TextComponentBuilder("   "."Item", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                            new TextComponentBuilder("3"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                            new TextComponentBuilder("   "."Item", 0, "md", "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("3"."  ", NULL, "md", "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
                                         )
                                     );
                             $arr[] = new BoxComponentBuilder(
