@@ -632,10 +632,14 @@ if(!is_null($events)){
                                 new BoxComponentBuilder(
                                     "vertical",
                                     array(
+                                        new BoxComponentBuilder(
+                                        "baseline",
+                                        array(
+                                            new IconComponentBuilder("https://www.ninenik.com/images/ninenik_page_logo.png",NULL,"md")                         
+                                        )
                                         //                          text   flex  margin size align gravt  wrap maxLi  weight  color
-                                        new TextComponentBuilder("RECEIPT", NULL, NULL, "sm", NULL, NULL, NULL, NULL, "bold","#1DB446"),
-                                        new TextComponentBuilder("Too Fast To Sleep", NULL, "md", "xxl", NULL, NUll, NULL, NULL, "bold"),
-                                        new TextComponentBuilder("@siam", NULL, NULL, "xl", NULL, NUll, true, NULL, NULL,"#aaaaaa"),
+                                        new TextComponentBuilder("Too Fast To Sleep", NULL, "md", "center", NULL, NUll, NULL, NULL, "bold"),
+                                        new TextComponentBuilder("@siam", NULL, NULL, "xl", "center", NUll, true, NULL, NULL,"#aaaaaa"),
                                         new SeparatorComponentBuilder()
                                     )
                                 ),
