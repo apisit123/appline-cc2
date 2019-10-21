@@ -539,16 +539,14 @@ if(!is_null($events)){
 
 
                           case "reciept":
-                            $cars = array("น้ำเปล่า เย็น ขวด", "BMW", "Toyota");
+                            $cars = array("น้ำเปล่า เย็น ขวด", "ดีลักซ์ เฟรนซ์ฟรายส์ (Deluxe French Fries)", "Toyota");
 
                             foreach ($cars as $key => $value) {
-                                # code...
-
-                                $arr[] = new BoxComponentBuilder(
+                                new BoxComponentBuilder(
                                     "horizontal",
                                     array(
-                                        new TextComponentBuilder("   1x ".$value, 0, NULL, "sm", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                        new TextComponentBuilder("20.0", NULL, NULL, "sm", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        new TextComponentBuilder("   1x ".$value, 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                        new TextComponentBuilder("20.0  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
                                     )
                                 );
                             }
@@ -572,7 +570,71 @@ if(!is_null($events)){
                                  new BoxComponentBuilder(
                                     "vertical",
                                     $arr
+                                ),
+                                 new BoxComponentBuilder(
+                                    "vertical",
+                                    array(
+                                        new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("   "."Item", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                                new TextComponentBuilder("3"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                            )
+                                        ),
+                                        new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("   "."Promotion "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                                new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                            )
+                                        ),
+                                        new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("   "."Subtotal", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                                new TextComponentBuilder("30"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                            )
+                                        ),
+
+                                        new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("   "."Vat", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                                new TextComponentBuilder("3"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                            )
+                                        ),
+                                        new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("   "."Total", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                                new TextComponentBuilder("33"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                            )
+                                        ),
+                                        new SeparatorComponentBuilder()
+
+                                    )
+                                ),
+                                new BoxComponentBuilder(
+                                    "vertical",
+                                    array(
+                                        new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("   "."Order ID", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
+                                                new TextComponentBuilder("#CCOR1909-03531"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                            )
+                                        ),
+                                        new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("   "."Payment", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
+                                                new TextComponentBuilder("Rabbit LINE Pay"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                            )
+                                        )
+                                    )
+                                
                                 )
+
                             );
 
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);
