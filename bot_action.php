@@ -539,7 +539,7 @@ if(!is_null($events)){
 
 
                           case "reciept":
-                            $cars = array("Volvoooooooooooooooooooooooooooooooooooo", "BMW", "Toyota");
+                            $cars = array("น้ำเปล่า เย็น ขวด", "BMW", "Toyota");
 
                             foreach ($cars as $key => $value) {
                                 # code...
