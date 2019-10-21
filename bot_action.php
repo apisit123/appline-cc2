@@ -635,7 +635,7 @@ if(!is_null($events)){
                                         //                          text   flex  margin size align gravt  wrap maxLi  weight  color
                                         new TextComponentBuilder("RECEIPT", NULL, NULL, "sm", NULL, NULL, NULL, NULL, "bold","#1DB446"),
                                         new TextComponentBuilder("Too Fast To Sleep", NULL, "md", "xxl", NULL, NUll, NULL, NULL, "bold"),
-                                        new TextComponentBuilder("@siam", NULL, NULL, "xs", NULL, NUll, true, NULL, NULL,"#aaaaaa"),
+                                        new TextComponentBuilder("@siam", NULL, NULL, "xl", NULL, NUll, true, NULL, NULL,"#aaaaaa"),
                                         new SeparatorComponentBuilder()
                                     )
                                 ),
