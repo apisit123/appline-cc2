@@ -609,7 +609,6 @@ if(!is_null($events)){
 
 
                             
-                            $arr[] = new SeparatorComponentBuilder("xl");
 
 
                             $arr[] = new BoxComponentBuilder(
