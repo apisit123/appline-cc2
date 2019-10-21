@@ -540,6 +540,17 @@ if(!is_null($events)){
 
                           case "reciept":
 
+                            for($i=0; $i<=2; $i++){
+                                $txt += new BoxComponentBuilder(
+                                            "horizontal",
+                                            array(
+                                                new TextComponentBuilder("Chewing Gum", 0, NULL, "sm", NULL, NULL, NULL, NULL, NULL,"#555555"),
+                                                new TextComponentBuilder($i, NULL, NULL, "sm", "end", NULL, NULL, NULL, NULL,"#111111")
+                                            )
+                                        ),
+                            }
+                             
+
                             $textReplyMessage = new BubbleContainerBuilder(
                                 "ltr",NULL,NULL,
                                 new BoxComponentBuilder(
@@ -562,6 +573,7 @@ if(!is_null($events)){
                                                 new TextComponentBuilder("$0.99", NULL, NULL, "sm", "end", NULL, NULL, NULL, NULL,"#111111")
                                             )
                                         ),
+                                        $txt
                                     ),
                                     NULL,
                                     "sm",
@@ -569,7 +581,6 @@ if(!is_null($events)){
                                 )
                             );
 
-                            error_log($textReplyMessage);
                             $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);
 
 
