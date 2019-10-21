@@ -634,8 +634,8 @@ if(!is_null($events)){
                                     array(
                                         //                          text   flex  margin size align gravt  wrap maxLi  weight  color
                                         new TextComponentBuilder("RECEIPT", NULL, NULL, "sm", NULL, NULL, NULL, NULL, "bold","#1DB446"),
-                                        new TextComponentBuilder("Brown Store", NULL, "md", "xxl", NULL, NUll, NULL, NULL, "bold"),
-                                        new TextComponentBuilder("Miraina Tower, 4-1-6 Shinjuku, Tokyo", NULL, NULL, "xs", NULL, NUll, true, NULL, NULL,"#aaaaaa"),
+                                        new TextComponentBuilder("Too Fast To Sleep", NULL, "md", "xxl", NULL, NUll, NULL, NULL, "bold"),
+                                        new TextComponentBuilder("@siam", NULL, NULL, "xs", NULL, NUll, true, NULL, NULL,"#aaaaaa"),
                                         new SeparatorComponentBuilder()
                                     )
                                 ),
