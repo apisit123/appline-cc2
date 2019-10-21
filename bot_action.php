@@ -539,7 +539,7 @@ if(!is_null($events)){
 
 
                           case "reciept":
-                            $cars = array("น้ำเปล่า เย็น ขวด", "ดีลักซ์ เฟรนซ์ฟรายส์ (Deluxe French Fries)", "Toyota");
+                            $cars = array("น้ำเปล่า เย็น ขวด", "ดีลักซ์ เฟรนซ์ฟรายส์ (Deluxe French Fries)", "นมสด ปั่น หวานน้อย");
 
                             foreach ($cars as $key => $value) {
                                 $arr[] = new BoxComponentBuilder(
