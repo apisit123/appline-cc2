@@ -538,6 +538,25 @@ if(!is_null($events)){
                           break;
 
 
+                          case "reciept":
+
+                            $textReplyMessage = new BubbleContainerBuilder(
+                                "ltr",NULL,NULL,
+                                new BoxComponentBuilder(
+                                    "vertical",
+                                    array(
+                                        new TextComponentBuilder("RECEIPT", NULL, NULL, "sm", NULL, NULL, NULL, NULL, "bold","#1DB446"),
+                                        new TextComponentBuilder("world")
+                                    )
+                                )
+                            );
+                            $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);
+
+
+
+                          break;
+
+
                           case (preg_match('/(สั่ง)/', $userMessage) ? true : false):
 
                             $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
