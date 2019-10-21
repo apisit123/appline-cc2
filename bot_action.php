@@ -539,7 +539,7 @@ if(!is_null($events)){
 
 
                           case "reciept":
-                            $cars = array("น้ำเปล่า เย็น ขวด", "ดีลักซ์ เฟรนซ์ฟรายส์\n   (Deluxe French Fries)", "นมสด ปั่น หวานน้อย");
+                            $cars = array("น้ำเปล่า เย็น ขวด", "ดีลักซ์ เฟรนซ์ฟรายส์\n\t\t(Deluxe French Fries)", "นมสด ปั่น หวานน้อย");
 
                             foreach ($cars as $key => $value) {
                                 $arr[] = new BoxComponentBuilder(
@@ -564,8 +564,8 @@ if(!is_null($events)){
                             $arr[] = new BoxComponentBuilder(
                                         "horizontal",
                                         array(
-                                            new TextComponentBuilder("   "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#d73a49"),
-                                            new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#d73a49")
+                                            new TextComponentBuilder("   "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
                                         )
                                     );
                             $arr[] = new BoxComponentBuilder(
@@ -595,15 +595,15 @@ if(!is_null($events)){
                             $arr[] = new BoxComponentBuilder(
                                         "horizontal",
                                         array(
-                                            new TextComponentBuilder("   "."Order ID", 0, "xxl", "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
-                                            new TextComponentBuilder("CCOR1909-03531", NULL, "xxl", "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                            new TextComponentBuilder("   "."Order ID", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
+                                            new TextComponentBuilder("CCOR1909-03531"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
                                         )
                                     );
                             $arr[] = new BoxComponentBuilder(
                                         "horizontal",
                                         array(
-                                            new TextComponentBuilder("Payment", 0, "xxl", "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
-                                            new TextComponentBuilder("Rabbit LINE Pay", NULL, "xxl", "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
+                                            new TextComponentBuilder("   "."Payment", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
+                                            new TextComponentBuilder("Rabbit LINE Pay"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
                                         )
                                     );
 
