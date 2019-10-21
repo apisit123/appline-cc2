@@ -630,17 +630,11 @@ if(!is_null($events)){
                             $textReplyMessage = new BubbleContainerBuilder(
                                 "ltr",NULL,NULL,
                                 new BoxComponentBuilder(
-                                    "baseline",
-                                    array(
-                                        new IconComponentBuilder("https://www.ninenik.com/images/ninenik_page_logo.png",NULL,"md")                         
-                                    )
-                                ),
-                                new BoxComponentBuilder(
                                     "vertical",
                                     array(
                                         //                          text   flex  margin size align gravt  wrap maxLi  weight  color
-                                        new TextComponentBuilder("Too Fast To Sleep", NULL, "md", "center", NULL, NUll, NULL, NULL, "bold"),
-                                        new TextComponentBuilder("@siam", NULL, NULL, "xl", "center", NUll, true, NULL, NULL,"#aaaaaa"),
+                                        new TextComponentBuilder("Too Fast To Sleep", NULL, "md", "xxl", NULL, NUll, NULL, NULL, "bold"),
+                                        new TextComponentBuilder("@siam", NULL, NULL, "xl", NULL, NUll, true, NULL, NULL,"#aaaaaa"),
                                         new SeparatorComponentBuilder()
                                     )
                                 ),
