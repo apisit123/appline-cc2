@@ -547,8 +547,8 @@ if(!is_null($events)){
                                 $arr[] = new BoxComponentBuilder(
                                     "horizontal",
                                     array(
-                                        new TextComponentBuilder("\t".$value, 0, NULL, "sm", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                        new TextComponentBuilder("$0.1", NULL, NULL, "sm", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        new TextComponentBuilder("   1x ".$value, 0, NULL, "sm", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                        new TextComponentBuilder("20.0", NULL, NULL, "sm", "end", NULL, TRUE, NULL, NULL,"#111111")
                                     )
                                 );
                             }
