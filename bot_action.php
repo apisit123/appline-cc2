@@ -541,27 +541,13 @@ if(!is_null($events)){
                           case "reciept":
                             $cars = array("Volvo", "BMW", "Toyota");
 
-                            $arr = new MultiMessageBuilder();
-
-
-                            $arr -> add(new BoxComponentBuilder(
+                            $arr = new BoxComponentBuilder(
                                     "horizontal",
                                     array(
                                         new TextComponentBuilder("asdasdasd", 0, NULL, "sm", NULL, NULL, NULL, NULL, NULL,"#555555"),
                                         new TextComponentBuilder("$0.1", NULL, NULL, "sm", "end", NULL, NULL, NULL, NULL,"#111111")
                                     )
-                                ))
-
-                            
-                                -> add(new BoxComponentBuilder(
-                                    "horizontal",
-                                    array(
-                                        new TextComponentBuilder("asdasdasd", 0, NULL, "sm", NULL, NULL, NULL, NULL, NULL,"#555555"),
-                                        new TextComponentBuilder("$0.1", NULL, NULL, "sm", "end", NULL, NULL, NULL, NULL,"#111111")
-                                    )
-                                ));
-
-                            
+                                );
 
                             $textReplyMessage = new BubbleContainerBuilder(
                                 "ltr",NULL,NULL,
@@ -578,6 +564,8 @@ if(!is_null($events)){
                                  new BoxComponentBuilder(
                                     "vertical",
                                     array(
+                                        $arr,
+                                        $arr,
                                         $arr
                                     ),
                                     NULL,
