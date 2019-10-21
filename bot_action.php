@@ -539,7 +539,7 @@ if(!is_null($events)){
 
 
                           case "reciept":
-                            $cars = array("Volvo", "BMW", "Toyota");
+                            $cars = array("Volvoooooooooooooooooooooooooooooooooooo", "BMW", "Toyota");
 
                             foreach ($cars as $key => $value) {
                                 # code...
@@ -547,11 +547,13 @@ if(!is_null($events)){
                                 $arr[] = new BoxComponentBuilder(
                                     "horizontal",
                                     array(
-                                        new TextComponentBuilder($value, 0, NULL, "sm", NULL, NULL, NULL, NULL, NULL,"#555555"),
+                                        new TextComponentBuilder($value, 0, NULL, "sm", NULL, NULL, TRUE, NULL, NULL,"#555555"),
                                         new TextComponentBuilder("$0.1", NULL, NULL, "sm", "end", NULL, NULL, NULL, NULL,"#111111")
                                     )
                                 );
                             }
+
+                            $arr[] = new SeparatorComponentBuilder();
 
                             
 
@@ -570,8 +572,8 @@ if(!is_null($events)){
                                  new BoxComponentBuilder(
                                     "vertical",
                                     $arr,
-                                    0,
-                                    "md",
+                                    NULL,
+                                    "sm",
                                     "xxl"
                                 )
                             );
