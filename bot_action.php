@@ -553,6 +553,43 @@ if(!is_null($events)){
 
                             $arr[] = new SeparatorComponentBuilder();
 
+                            $arr[] = new BoxComponentBuilder(
+                                        "horizontal",
+                                        array(
+                                            new TextComponentBuilder("   "."Item", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("3"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        )
+                                    );
+                            $arr[] = new BoxComponentBuilder(
+                                        "horizontal",
+                                        array(
+                                            new TextComponentBuilder("   "."Promotion "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        )
+                                    );
+                            $arr[] = new BoxComponentBuilder(
+                                        "horizontal",
+                                        array(
+                                            new TextComponentBuilder("   "."Subtotal", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("30"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        )
+                                    );
+
+                            $arr[] = new BoxComponentBuilder(
+                                        "horizontal",
+                                        array(
+                                            new TextComponentBuilder("   "."Vat", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("3"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        )
+                                    );
+                            $arr[] = new BoxComponentBuilder(
+                                        "horizontal",
+                                        array(
+                                            new TextComponentBuilder("   "."Total", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
+                                            new TextComponentBuilder("33"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                        )
+                                    );
+
                             
 
                             $textReplyMessage = new BubbleContainerBuilder(
@@ -570,71 +607,7 @@ if(!is_null($events)){
                                  new BoxComponentBuilder(
                                     "vertical",
                                     $arr
-                                ),
-                                 new BoxComponentBuilder(
-                                    "vertical",
-                                    array(
-                                        new BoxComponentBuilder(
-                                            "horizontal",
-                                            array(
-                                                new TextComponentBuilder("   "."Item", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                                new TextComponentBuilder("3"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                            )
-                                        ),
-                                        new BoxComponentBuilder(
-                                            "horizontal",
-                                            array(
-                                                new TextComponentBuilder("   "."Promotion "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                                new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                            )
-                                        ),
-                                        new BoxComponentBuilder(
-                                            "horizontal",
-                                            array(
-                                                new TextComponentBuilder("   "."Subtotal", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                                new TextComponentBuilder("30"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                            )
-                                        ),
-
-                                        new BoxComponentBuilder(
-                                            "horizontal",
-                                            array(
-                                                new TextComponentBuilder("   "."Vat", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                                new TextComponentBuilder("3"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                            )
-                                        ),
-                                        new BoxComponentBuilder(
-                                            "horizontal",
-                                            array(
-                                                new TextComponentBuilder("   "."Total", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                                new TextComponentBuilder("33"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                            )
-                                        ),
-                                        new SeparatorComponentBuilder()
-
-                                    )
                                 )
-                                //  ,
-                                // new BoxComponentBuilder(
-                                //     "vertical",
-                                //     array(
-                                //         new BoxComponentBuilder(
-                                //             "horizontal",
-                                //             array(
-                                //                 new TextComponentBuilder("   "."Order ID", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
-                                //                 new TextComponentBuilder("#CCOR1909-03531"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
-                                //             )
-                                //         ),
-                                //         new BoxComponentBuilder(
-                                //             "horizontal",
-                                //             array(
-                                //                 new TextComponentBuilder("   "."Payment", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
-                                //                 new TextComponentBuilder("Rabbit LINE Pay"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
-                                //             )
-                                //         )
-                                //     )
-                                
-                                // )
 
                             );
 
