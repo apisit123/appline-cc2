@@ -628,14 +628,13 @@ if(!is_null($events)){
                             
 
                             $textReplyMessage = new BubbleContainerBuilder(
-                                "ltr",
+                                "ltr",NULL,NULL
                                 new BoxComponentBuilder(
                                     "baseline",
                                     array(
                                         new IconComponentBuilder("https://www.ninenik.com/images/ninenik_page_logo.png",NULL,"md")                         
                                     )
                                 ),
-                                NULL,
                                 new BoxComponentBuilder(
                                     "vertical",
                                     array(
