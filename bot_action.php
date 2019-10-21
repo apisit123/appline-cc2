@@ -571,8 +571,8 @@ if(!is_null($events)){
                                     "vertical",
                                     array(
                                         for($i=0; $i<=2; $i++){
-                                            $arr[$i];
                                         }
+                                        $arr[0]
                                     ),
                                     NULL,
                                     "sm",
