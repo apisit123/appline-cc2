@@ -564,8 +564,8 @@ if(!is_null($events)){
                             $arr[] = new BoxComponentBuilder(
                                         "horizontal",
                                         array(
-                                            new TextComponentBuilder("   "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                            new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
+                                            new TextComponentBuilder("   "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#d73a49"),
+                                            new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#d73a49")
                                         )
                                     );
                             $arr[] = new BoxComponentBuilder(
