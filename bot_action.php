@@ -539,9 +539,9 @@ if(!is_null($events)){
 
 
                           case "reciept":
-                            $array = {"Volvo", "BMW", "Ford", "Mazda"};
+                            $cars = array("Volvo", "BMW", "Toyota");
 
-                            foreach ( $array as $value ) {
+                            foreach ( $cars as $value ) {
 
                                 $txt[] = new BoxComponentBuilder(
                                         "horizontal",
