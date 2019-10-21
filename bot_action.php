@@ -549,8 +549,7 @@ if(!is_null($events)){
                                     array(
                                         new TextComponentBuilder($value, 0, NULL, "sm", NULL, NULL, NULL, NULL, NULL,"#555555"),
                                         new TextComponentBuilder("$0.1", NULL, NULL, "sm", "end", NULL, NULL, NULL, NULL,"#111111")
-                                    ), NULL, "sm", "xxl"
-
+                                    )
                                 );
                             }
 
@@ -571,8 +570,8 @@ if(!is_null($events)){
                                  new BoxComponentBuilder(
                                     "vertical",
                                     $arr,
-                                    NULL,
-                                    "xxl",
+                                    0,
+                                    "md",
                                     "xxl"
                                 )
                             );
