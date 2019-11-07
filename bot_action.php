@@ -623,7 +623,8 @@ if(!is_null($events)){
                             }
 
 
-                            $replyData = new textReplyMessage("success");
+                            $textReplyMessage = 'success';      
+                            $replyData = new TextMessageBuilder($textReplyMessage);       
                           break;
 
 
