@@ -538,117 +538,89 @@ if(!is_null($events)){
                           break;
 
 
-                          case "reciept":
-                            $cars = array("น้ำเปล่า เย็น ขวด", "ดีลักซ์ เฟรนซ์ฟรายส์\n\t\t(Deluxe French Fries)", "นมสด ปั่น หวานน้อย");
+                          case (preg_match('/(bill-)/', $userMessage) ? true : false):
 
-                            foreach ($cars as $key => $value) {
-                                $arr[] = new BoxComponentBuilder(
-                                        "horizontal",
-                                        array(
-                                            new TextComponentBuilder("   1x ".$value, 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                            new TextComponentBuilder("20.0  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                        )
-                                    );
+                            $paramBranch = explode("-",$userMessage);
+
+                            $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/queue/queues";
+
+                            $curl = curl_init();
+
+                            curl_setopt_array($curl, array(
+                              CURLOPT_URL => $url,
+                              CURLOPT_RETURNTRANSFER => true,
+                              CURLOPT_ENCODING => "",
+                              CURLOPT_MAXREDIRS => 10,
+                              CURLOPT_TIMEOUT => 30,
+                              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                              CURLOPT_CUSTOMREQUEST => "GET"
+                            ));
+
+                            $response = curl_exec($curl);
+                            $response = json_decode($response);
+
+                            $queue = $response->queue;
+
+                            foreach ($queue as $key => $value) {
+                              foreach ($value as $keys => $values) {
+                                if (!empty($values->image_url)) {
+
+
+                                    $order_id = $values->order_id;
+
+
+                                    $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/order/order/".$order_id;
+
+                                    $curl = curl_init();
+
+                                    curl_setopt_array($curl, array(
+                                      CURLOPT_URL => $url,
+                                      CURLOPT_RETURNTRANSFER => true,
+                                      CURLOPT_ENCODING => "",
+                                      CURLOPT_MAXREDIRS => 10,
+                                      CURLOPT_TIMEOUT => 30,
+                                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                      CURLOPT_CUSTOMREQUEST => "GET"
+                                    ));
+
+                                    $response = curl_exec($curl);
+
+                                         
+
+                                    $response = json_decode($response, true);
+
+                                    
+                                    $array["data"]["order"] = $response["order"][0];
+
+                                    $array["command"] = 'paid';
+                                    $array["data"]["order"]["order_type"] = 'line';
+
+
+                                    $json = json_encode($array);
+
+
+
+
+                                    $url = "https://appline.cctfts.com:8001/line_bot.php";
+
+                                    $curl = curl_init();
+
+                                    curl_setopt_array($curl, array(
+                                      CURLOPT_URL => $url,
+                                      CURLOPT_RETURNTRANSFER => true,
+                                      CURLOPT_ENCODING => "",
+                                      CURLOPT_MAXREDIRS => 10,
+                                      CURLOPT_TIMEOUT => 30,
+                                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                      CURLOPT_CUSTOMREQUEST => "POST",
+                                      CURLOPT_POSTFIELDS => $json
+                                    ));
+
+                                    $response = curl_exec($curl);
+
+                                }
+                              }
                             }
-
-                            $arr[] = new SeparatorComponentBuilder("xl");
-
-
-                            $arr[] = new BoxComponentBuilder(
-                                        "horizontal",
-                                        array(
-                                            new TextComponentBuilder("   "."Item", 0, "md", "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                            new TextComponentBuilder("3"."  ", NULL, "md", "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                        )
-                                    );
-                            $arr[] = new BoxComponentBuilder(
-                                        "horizontal",
-                                        array(
-                                            new TextComponentBuilder("   "."สั่งเครื่องดื่มผ่านไลน์ ลด 20 บาท", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                            new TextComponentBuilder("-20.00"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                        )
-                                    );
-                            $arr[] = new BoxComponentBuilder(
-                                        "horizontal",
-                                        array(
-                                            new TextComponentBuilder("   "."Subtotal", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                            new TextComponentBuilder("30"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                        )
-                                    );
-
-                            $arr[] = new BoxComponentBuilder(
-                                        "horizontal",
-                                        array(
-                                            new TextComponentBuilder("   "."Vat", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                            new TextComponentBuilder("3"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                        )
-                                    );
-                            $arr[] = new BoxComponentBuilder(
-                                        "horizontal",
-                                        array(
-                                            new TextComponentBuilder("   "."Total", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#555555"),
-                                            new TextComponentBuilder("33"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#111111")
-                                        )
-                                    );
-                            $arr[] = new SeparatorComponentBuilder("xl");
-
-                            $arr[] = new BoxComponentBuilder(
-                                        "horizontal",
-                                        array(
-                                            new TextComponentBuilder("   "."Order ID", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
-                                            new TextComponentBuilder("CCOR1909-03531"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
-                                        )
-                                    );
-                            $arr[] = new BoxComponentBuilder(
-                                        "horizontal",
-                                        array(
-                                            new TextComponentBuilder("   "."Payment", 0, NULL, "xs", NULL, NULL, TRUE, NULL, NULL,"#aaaaaa"),
-                                            new TextComponentBuilder("Rabbit LINE Pay"."  ", NULL, NULL, "xs", "end", NULL, TRUE, NULL, NULL,"#aaaaaa")
-                                        )
-                                    );
-
-
-                            
-
-
-                            $arr[] = new BoxComponentBuilder(
-                                        "vertical",
-                                        array(
-                                            new ImageComponentBuilder("https://scdn.line-apps.com/n/channel_devcenter/img/fx/linecorp_code_withborder.png", NULL, "xxl", NULL, NULL, "xl", NULL, "cover")
-                                        )
-                                    );
-
-                            $arr[] = new BoxComponentBuilder(
-                                        "vertical",
-                                        array(
-                                            new TextComponentBuilder("you can revieve the order by using this code instead of a reciept", NULL, "xxl", "xs", "center", NULL, TRUE, NULL, NULL,"#aaaaaa")
-                                        )
-                                    );
-
-                            
-
-                            $textReplyMessage = new BubbleContainerBuilder(
-                                "ltr",NULL,NULL,
-                                new BoxComponentBuilder(
-                                    "vertical",
-                                    array(
-                                        //                          text   flex  margin size align gravt  wrap maxLi  weight  color
-                                        new TextComponentBuilder("Too Fast To Sleep", NULL, "md", "xxl", NULL, NUll, NULL, NULL, "bold"),
-                                        new TextComponentBuilder("@siam", NULL, NULL, "xl", NULL, NUll, true, NULL, NULL,"#aaaaaa"),
-                                        new SeparatorComponentBuilder()
-                                    )
-                                ),
-                                 new BoxComponentBuilder(
-                                    "vertical",
-                                    $arr,
-                                    NULL,
-                                    "sm",
-                                    "xs"
-                                )
-
-                            );
-
-                            $replyData = new FlexMessageBuilder("This is a Flex Message",$textReplyMessage);
 
 
 
