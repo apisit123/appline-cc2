@@ -390,7 +390,7 @@ if(!is_null($events)){
 
                         case "promotion" :
 
-                          $discount_line20 = "https://storage.googleapis.com/toofast-bucket/promote/too%20fast%20order%20%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%97.png";
+                          $discount_line20 = "";
                           $tato_free_top = "https://storage.googleapis.com/toofast-bucket/Promotion/%E0%B8%8A%E0%B8%B2%E0%B8%99%E0%B8%A1%E0%B9%84%E0%B8%82%E0%B9%88%E0%B8%A1%E0%B8%B8%E0%B8%81.jpg";
                           $replyData = new MultiMessageBuilder();
                           $replyData -> add(new ImageMessageBuilder($discount_line20, $discount_line20))

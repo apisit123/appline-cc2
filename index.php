@@ -1,6 +1,5 @@
 <?php
 
-
 // กรณีต้องการตรวจสอบการแจ้ง error ให้เปิด 3 บรรทัดล่างนี้ให้ทำงาน กรณีไม่ ให้ comment ปิดไป
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -57,11 +56,16 @@ use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
 
 
 
-
+// //productions
 define('LINE_MESSAGE_CHANNEL_ID','1648723890');
 define('LINE_MESSAGE_CHANNEL_SECRET','dbddc565684d3c6d66cfde44187bd101');
 define('LINE_MESSAGE_ACCESS_TOKEN','XuWMr1KtT16go8TtsiDaLBVIRla/IX6JagScETaCaAt7wApMNWb85YDoG19amCG6c6ttH/iQzmhR5gMFQL29qTIDVIjbpJB0VkEsbVhfdnwGM9QkhoP5gKT64yG4lem5jFN9K5yKAYAagLOQybaLWAdB04t89/1O/w1cDnyilFU=');
 
+
+//test
+// define('LINE_MESSAGE_CHANNEL_ID','1648723890');
+// define('LINE_MESSAGE_CHANNEL_SECRET','1e61a9805bde296ff2b3b2fbbe302220');
+// define('LINE_MESSAGE_ACCESS_TOKEN','ZJtS+TuOmS9FWEHc1Idm7RF2dXjszDOOWHDAUcx2LLMyQP9DStP4PUXeoQjX6gtdYRy9hBD5T5opbbeHMb5zjU3PonwLzSKCbkJ2CQ5scC7uTmojN2I38anReeBjmzdcKGl6sq5758gXHdB21DgeHlGUYhWQfeY8sLGRXgo3xvw=');
 
 
 $httpClient = new CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
@@ -70,121 +74,119 @@ $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SE
 
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
-
-error_log($content);
-  
-// กำหนดค่า signature สำหรับตรวจสอบข้อมูลที่ส่งมาว่าเป็นข้อมูลจาก LINE
-$hash = hash_hmac('sha256', $content, LINE_MESSAGE_CHANNEL_SECRET, true);
-$signature = base64_encode($hash);
-
-
-
 $richmenu = array("richmenu-14e79f8f616d100c872e6574e3e7b951");
 
-$events = $bot->parseEventRequest($content, $signature);
+    $json = json_decode($content, true);
+    
+    $json["command"] = isset($json["command"]) ? $json["command"] : '';
 
-$eventObj = $events[0]; // Event Object ของ array แรก
-  
-// ดึงค่าประเภทของ Event มาไว้ในตัวแปร มีทั้งหมด 7 event
-$eventType = $eventObj->getType();
-  
-// สร้างตัวแปร ไว้เก็บ sourceId ของแต่ละประเภท
-$userId = NULL;
-$groupId = NULL;
-$roomId = NULL;
+    if($json["command"] == "paid" && $json["data"]["order"]["order_type"] == "line"){
 
-// สร้างตัวแปรเก็บ source id และ source type
-$sourceId = NULL;
-$sourceType = NULL;
+        $order = $json["data"]["order"];
 
-// สร้างตัวแปร replyToken และ replyData สำหรับกรณีใช้ตอบกลับข้อความ
-$replyToken = NULL;
-$replyData = NULL;
+        \PHPQRCode\QRcode::png('CC'.$order["doc_no"], 'images/CC'.$order["doc_no"].'.png', 'L', 4, 2);
 
-// สร้างตัวแปร ไว้เก็บค่าว่าเป้น Event ประเภทไหน
-$eventMessage = NULL;
-$eventPostback = NULL;
-$eventJoin = NULL;
-$eventLeave = NULL;
-$eventFollow = NULL;
-$eventUnfollow = NULL;
-$eventBeacon = NULL;
-$eventAccountLink = NULL;
-$eventMemberJoined = NULL;
-$eventMemberLeft = NULL;
+        require_once('reciept.php');
 
-// เงื่อนไขการกำหนดประเภท Event 
-switch($eventType){
-    case 'message': $eventMessage = true; break;    
-    case 'postback': $eventPostback = true; break;  
-    case 'join': $eventJoin = true; break;  
-    case 'leave': $eventLeave = true; break;    
-    case 'follow': $eventFollow = true; break;  
-    case 'unfollow': $eventUnfollow = true; break;  
-    case 'beacon': $eventBeacon = true; break;     
-    case 'accountLink': $eventAccountLink = true; break;       
-    case 'memberJoined': $eventMemberJoined = true; break;       
-    case 'memberLeft': $eventMemberLeft = true; break;                                           
-}
+        $replyData = make_reciept($order);
 
-// สร้างตัวแปรเก็บค่า userId กรณีเป็น Event ที่เกิดขึ้นใน USER
-if($eventObj->isUserEvent()){
-    $userId = $eventObj->getUserId();  
-    $sourceType = "USER";
-}
-// สร้างตัวแปรเก็บค่า groupId กรณีเป็น Event ที่เกิดขึ้นใน GROUP
-if($eventObj->isGroupEvent()){
-    $groupId = $eventObj->getGroupId();  
-    $userId = $eventObj->getUserId();  
-    $sourceType = "GROUP";
-}
-// สร้างตัวแปรเก็บค่า roomId กรณีเป็น Event ที่เกิดขึ้นใน ROOM
-if($eventObj->isRoomEvent()){
-    $roomId = $eventObj->getRoomId();        
-    $userId = $eventObj->getUserId();      
-    $sourceType = "ROOM";
-}
-// เก็บค่า sourceId ปกติจะเป็นค่าเดียวกันกับ userId หรือ roomId หรือ groupId ขึ้นกับว่าเป็น event แบบใด
-$sourceId = $eventObj->getEventSourceId();
-// ดึงค่า replyToken มาไว้ใช้งาน ทุกๆ Event ที่ไม่ใช่ Leave และ Unfollow Event และ  MemberLeft
-// replyToken ไว้สำหรับส่งข้อความจอบกลับ 
-if(is_null($eventLeave) && is_null($eventUnfollow) && is_null($eventMemberLeft)){
-    $replyToken = $eventObj->getReplyToken();    
-}
- 
-////////////////////////////  ส่วนของการทำงาน
-include_once("bot_action.php");
-//////////////////////////
- 
-$response = $bot->replyMessage($replyToken,$replyData);
-if ($response->isSucceeded()) {
-    echo 'Succeeded!';
-    // return;
-}
-// Failed
-echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+        $response = $bot->pushMessage('Ud94502d4803033524f28410ff470272e', $replyData);
 
-$url = "https://bots.dialogflow.com/line/80a5e0d6-016f-46f5-b8b8-0302c02896b3/webhook";
-$headers = getallheaders();
-$headers['Host'] = "bots.dialogflow.com";
-$json_headers = array();
-foreach($headers as $k=>$v){
-    $json_headers[]=$k.":".$v;
-}
+        print_r($response);
 
-$ch = curl_init();
-curl_setopt( $ch, CURLOPT_URL, $url);
-curl_setopt( $ch, CURLOPT_POST, 1);
-curl_setopt( $ch, CURLOPT_BINARYTRANSFER, true);
-curl_setopt( $ch, CURLOPT_POSTFIELDS, $content);
-curl_setopt( $ch, CURLOPT_HTTPHEADER, $json_headers);
-curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 2); // 0 | 2 ถ้าเว็บเรามี ssl สามารถเปลี่ยนเป้น 2
-curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 1); // 0 | 1 ถ้าเว็บเรามี ssl สามารถเปลี่ยนเป้น 1
-curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
-$result = curl_exec( $ch );
-curl_close( $ch );
+        $replyData = new TextMessageBuilder($order["member"]["line_id"],$order["member"]["line_name"]);
 
-error_log($result);
+        $response = $bot->pushMessage('Ud94502d4803033524f28410ff470272e', $replyData);
+
+    }else{
+
+        // กำหนดค่า signature สำหรับตรวจสอบข้อมูลที่ส่งมาว่าเป็นข้อมูลจาก LINE
+        $hash = hash_hmac('sha256', $content, LINE_MESSAGE_CHANNEL_SECRET, true);
+        $signature = base64_encode($hash);
+
+
+        $events = $bot->parseEventRequest($content, $signature);
+
+        $eventObj = $events[0]; // Event Object ของ array แรก
+          
+        // ดึงค่าประเภทของ Event มาไว้ในตัวแปร มีทั้งหมด 7 event
+        $eventType = $eventObj->getType();
+          
+        // สร้างตัวแปร ไว้เก็บ sourceId ของแต่ละประเภท
+        $userId = NULL;
+        $groupId = NULL;
+        $roomId = NULL;
+
+        // สร้างตัวแปรเก็บ source id และ source type
+        $sourceId = NULL;
+        $sourceType = NULL;
+
+        // สร้างตัวแปร replyToken และ replyData สำหรับกรณีใช้ตอบกลับข้อความ
+        $replyToken = NULL;
+        $replyData = NULL;
+
+        // สร้างตัวแปร ไว้เก็บค่าว่าเป้น Event ประเภทไหน
+        $eventMessage = NULL;
+        $eventPostback = NULL;
+        $eventJoin = NULL;
+        $eventLeave = NULL;
+        $eventFollow = NULL;
+        $eventUnfollow = NULL;
+        $eventBeacon = NULL;
+        $eventAccountLink = NULL;
+        $eventMemberJoined = NULL;
+        $eventMemberLeft = NULL;
+
+        // เงื่อนไขการกำหนดประเภท Event 
+        switch($eventType){
+            case 'message': $eventMessage = true; break;    
+            case 'postback': $eventPostback = true; break;  
+            case 'join': $eventJoin = true; break;  
+            case 'leave': $eventLeave = true; break;    
+            case 'follow': $eventFollow = true; break;  
+            case 'unfollow': $eventUnfollow = true; break;  
+            case 'beacon': $eventBeacon = true; break;     
+            case 'accountLink': $eventAccountLink = true; break;       
+            case 'memberJoined': $eventMemberJoined = true; break;       
+            case 'memberLeft': $eventMemberLeft = true; break;                                           
+        }
+
+        // สร้างตัวแปรเก็บค่า userId กรณีเป็น Event ที่เกิดขึ้นใน USER
+        if($eventObj->isUserEvent()){
+            $userId = $eventObj->getUserId();  
+            $sourceType = "USER";
+        }
+        // สร้างตัวแปรเก็บค่า groupId กรณีเป็น Event ที่เกิดขึ้นใน GROUP
+        if($eventObj->isGroupEvent()){
+            $groupId = $eventObj->getGroupId();  
+            $userId = $eventObj->getUserId();  
+            $sourceType = "GROUP";
+        }
+        // สร้างตัวแปรเก็บค่า roomId กรณีเป็น Event ที่เกิดขึ้นใน ROOM
+        if($eventObj->isRoomEvent()){
+            $roomId = $eventObj->getRoomId();        
+            $userId = $eventObj->getUserId();      
+            $sourceType = "ROOM";
+        }
+        // เก็บค่า sourceId ปกติจะเป็นค่าเดียวกันกับ userId หรือ roomId หรือ groupId ขึ้นกับว่าเป็น event แบบใด
+        $sourceId = $eventObj->getEventSourceId();
+        // ดึงค่า replyToken มาไว้ใช้งาน ทุกๆ Event ที่ไม่ใช่ Leave และ Unfollow Event และ  MemberLeft
+        // replyToken ไว้สำหรับส่งข้อความจอบกลับ 
+        if(is_null($eventLeave) && is_null($eventUnfollow) && is_null($eventMemberLeft)){
+            $replyToken = $eventObj->getReplyToken();    
+        }
+         
+        ////////////////////////////  ส่วนของการทำงาน
+        include_once("bot_action.php");
+        //////////////////////////
+         
+        $response = $bot->replyMessage($replyToken,$replyData);
+        if ($response->isSucceeded()) {
+            echo 'Succeeded!';
+            // return;
+        }
+        // Failed
+        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+    }
 
 ?>
