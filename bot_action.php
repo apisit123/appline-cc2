@@ -716,6 +716,10 @@ if(!is_null($events)){
                                         -> add(new TextMessageBuilder("Too Fast Order ขอบคุณค่ะ"));
                         break;
 
+                        case "no"
+
+                        break;
+
 
                         case (preg_match('/(queue_)/', $userMessage) ? true : false):
 
@@ -774,7 +778,7 @@ if(!is_null($events)){
                                 );
         
 
-                                $multiMessage->add(new TemplateMessageBuilder('Confirm Template', new ConfirmTemplateBuilder("ต้องการบิลปัจจุบัน?", $actions)));
+                                // $multiMessage->add(new TemplateMessageBuilder('Confirm Template', new ConfirmTemplateBuilder("ต้องการบิลปัจจุบัน?", $actions)));
 
                             }
 
