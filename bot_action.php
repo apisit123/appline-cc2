@@ -74,16 +74,18 @@ use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SeparatorComponentBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\TextComponentBuilder;
 use LINE\LINEBot\MessageBuilder\Flex\ComponentBuilder\SpanComponentBuilder;
 
-define("siam", "สยาม");
-define("swu", "มศว");
-define("sasin", "ศศินทร์");
-define("samyan", "สามย่าน");
-define("ku", "เกษตร");
-define("salaya", "ศาลายา");
-define("cmu", "เชียงใหม่");
+define("siam", "Too Fast To Sleep\nสยาม");
+define("swu", "Too Fast To Sleep\nมศว");
+define("sasin", "Too Fast Coffee\nศศินทร์");
+define("samyan", "Too Fast To Sleep\nสามย่าน");
+define("ku", "Too Fast To Sleep\nเกษตร");
+define("salaya", "Too Fast To Sleep\nศาลายา");
+define("cmu", "Too Fast To Sleep\nเชียงใหม่");
 
-define('RICHMENU', 'richmenu-c23206d2a8500d452551b52271125458');
-
+define("inqueue", "รายการสั่งซื้อของลูกค้าถึงพนักงานแล้ว กำลังรอการจัดทำค่ะ");
+define("cooking", "พนักงานกำลังทำรายการของลูกค้าค่ะ");
+define("done", "รายการของลูกค้าเสร็จแล้ว กรุณามารับสินค้าที่แคชเชียร์ค่ะ");
+define("RICHMENU","richmenu-14e79f8f616d100c872e6574e3e7b951");
  
 // ส่วนของการทำงาน
 if(!is_null($events)){
@@ -282,7 +284,7 @@ if(!is_null($events)){
         }
         // ถ้าเป็น image
         if($typeMessage=='image'){
- 
+            
         }               
         // ถ้าเป็น audio
  
@@ -328,19 +330,25 @@ if(!is_null($events)){
                         $fileNameSave = time().".".$ext;                                
                         break;                                                      
                 }
-                $botDataFolder = 'botdata/'; // โฟลเดอร์หลักที่จะบันทึกไฟล์
+                $botDataFolder = 'billdata/'; // โฟลเดอร์หลักที่จะบันทึกไฟล์
                 $botDataUserFolder = $botDataFolder.$userId; // มีโฟลเดอร์ด้านในเป็น userId อีกขั้น
                 if(!file_exists($botDataUserFolder)) { // ตรวจสอบถ้ายังไม่มีให้สร้างโฟลเดอร์ userId
                     mkdir($botDataUserFolder, 0777, true);
                 }   
                 // กำหนด path ของไฟล์ที่จะบันทึก
                 $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
-//              file_put_contents($fileFullSavePath,$dataBinary); // เอา comment ออก ถ้าต้องการทำการบันทึกไฟล์
-                $textReplyMessage = "บันทึกไฟล์เรียบร้อยแล้ว $fileNameSave";
+                file_put_contents($fileFullSavePath,$dataBinary); // เอา comment ออก ถ้าต้องการทำการบันทึกไฟล์
+
+                require_once('verify_bill.php');
+
+                list($sendBank, $transRef) = verify_bill($fileFullSavePath);
+
+
+                $textReplyMessage = "SendBank : $sendBank  -  transaction Ref : $transRef";
                 $replyData = new TextMessageBuilder($textReplyMessage);
-//              $failMessage = json_encode($fileType);              
-//              $failMessage = json_encode($responseMedia->getHeaders());
-                $replyData = new TextMessageBuilder($failMessage);                      
+                // $failMessage = json_encode($fileType);              
+                // $failMessage = json_encode($responseMedia->getHeaders());
+                // $replyData = new TextMessageBuilder($failMessage);                      
             }else{
                 $failMessage = json_encode($idMessage.' '.$responseMedia->getHTTPStatus() . ' ' . $responseMedia->getRawBody());
                 $replyData = new TextMessageBuilder($failMessage);          
@@ -390,7 +398,7 @@ if(!is_null($events)){
 
                         case "promotion" :
 
-                          $discount_line20 = "https://storage.googleapis.com/toofast-bucket/promote/too%20fast%20order%20%E0%B9%82%E0%B8%9B%E0%B8%A3%E0%B9%82%E0%B8%A1%E0%B8%97.png";
+                          $discount_line20 = "";
                           $tato_free_top = "https://storage.googleapis.com/toofast-bucket/Promotion/%E0%B8%8A%E0%B8%B2%E0%B8%99%E0%B8%A1%E0%B9%84%E0%B8%82%E0%B9%88%E0%B8%A1%E0%B8%B8%E0%B8%81.jpg";
                           $replyData = new MultiMessageBuilder();
                           // $replyData -> add(new ImageMessageBuilder($discount_line20, $discount_line20))
@@ -435,6 +443,7 @@ if(!is_null($events)){
                           
 
                           break;
+
 
                         case "solve richmenu problem" :
 
@@ -535,12 +544,20 @@ if(!is_null($events)){
 
                               )));
 
-                          break;
+                        break;
 
 
-                          case (preg_match('/(bill-)/', $userMessage) ? true : false):
 
-                            $paramBranch = explode("-",$userMessage);
+                        case (preg_match('/(bill)/', $userMessage) ? true : false):
+
+                            function multiexplode ($delimiters,$data) {
+                                $MakeReady = str_replace($delimiters, $delimiters[0], $data);
+                                $Return    = explode($delimiters[0], $MakeReady);
+                                return  $Return;
+                            }
+
+
+                            $paramBranch = multiexplode(Array("_","-"),$userMessage);
 
                             $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/queue/queues";
 
@@ -561,10 +578,17 @@ if(!is_null($events)){
 
                             $queue = $response->queue;
 
+                            $multiMessage = new MultiMessageBuilder();
+
+                            $is_null = true;
+
+                            $txt = "ขออภัยค่ะ..ไม่พบออเดอร์ของลูกค้าในระบบ\nโปรดติดต่อแคชเชียร์เพื่อสอบถามข้อมูลเพิ่มเติมนะคะ";
+
                             foreach ($queue as $key => $value) {
                               foreach ($value as $keys => $values) {
-                                if (!empty($values->image_url)) {
+                                if (!empty($values->line_id) && $values->line_id == $userId) {
 
+                                    $is_null = false;
 
                                     $order_id = $values->order_id;
 
@@ -596,39 +620,26 @@ if(!is_null($events)){
                                     $array["data"]["order"]["order_type"] = 'line';
 
 
-                                    $json = json_encode($array);
+                                    $order = $array["data"]["order"];
 
+                                    require_once('reciept.php');
 
-
-
-                                    $url = "https://appline.cctfts.com:8001/line_bot.php";
-
-                                    $curl = curl_init();
-
-                                    curl_setopt_array($curl, array(
-                                      CURLOPT_URL => $url,
-                                      CURLOPT_RETURNTRANSFER => true,
-                                      CURLOPT_ENCODING => "",
-                                      CURLOPT_MAXREDIRS => 10,
-                                      CURLOPT_TIMEOUT => 30,
-                                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                      CURLOPT_CUSTOMREQUEST => "POST",
-                                      CURLOPT_POSTFIELDS => $json
-                                    ));
-
-                                    $response = curl_exec($curl);
+                                    $multiMessage -> add(make_reciept($order));  
 
                                 }
                               }
                             }
 
+                            if($is_null){
+                                $replyData = new TextMessageBuilder($txt);
+                            }else{
+                                $replyData = $multiMessage;
+                            }
 
-                            $textReplyMessage = 'success';      
-                            $replyData = new TextMessageBuilder($textReplyMessage);       
-                          break;
+                        break;
 
-
-                          case (preg_match('/(สั่ง)/', $userMessage) ? true : false):
+                        
+                        case (preg_match('/(สั่ง)/', $userMessage) ? true : false):
 
                             $imageMapUrl = 'https://storage.googleapis.com/toofast-bucket/linebot/how_to_order.png?_ignored=';
                             
@@ -711,6 +722,8 @@ if(!is_null($events)){
                             $paramBranch = explode("_",$userMessage);
                             $url = "https://cctfts.com/api/v2/".$paramBranch[1]."/queue/queues";
 
+
+
                             $curl = curl_init();
 
                             curl_setopt_array($curl, array(
@@ -726,14 +739,51 @@ if(!is_null($events)){
                             $response = curl_exec($curl);
 
                             $response = json_decode($response);
-                            
-                            $txt = "Inqueue \t\t : ".sizeof($response->queue->inqueue)." ออเดอร์\n"."cooking \t\t : ".sizeof($response->queue->cooking)." ออเดอร์\n"."done \t\t\t : ".sizeof($response->queue->done)." ออเดอร์\n";
+
+
+                            $queue = $response->queue;
 
                             
-                            $replyData = new MultiMessageBuilder();
-                            $replyData -> add(new TextMessageBuilder("สถานะคิวของสาขา ".constant($paramBranch[1])))
-                                       -> add(new TextMessageBuilder($txt));
+                            $txt = "Done     \t\t : ".sizeof($response->queue->done)." ออเดอร์\n"."Cooking \t\t : ".sizeof($response->queue->cooking)." ออเดอร์\n"."Inqueue \t\t : ".sizeof($response->queue->inqueue)." ออเดอร์";
 
+                            $multiMessage  = new MultiMessageBuilder();
+
+                            $multiMessage->add(new TextMessageBuilder("สถานะคิว ".constant($paramBranch[1])));
+                            $multiMessage->add(new TextMessageBuilder($txt));
+
+                            $is_queue = false;
+
+
+                            foreach ($queue as $key => $value) {
+                              foreach ($value as $keys => $values) {
+                                if (!empty($values->line_id) && $values->line_id == $userId) {
+                                    $queue_str = '';
+                                    $is_queue = true;
+                                // if (!empty($values->image_url) && strpos($values->image_url, $profile['pictureUrl']) !== false) {
+                                  $queue_str = "ออเดอร์ของคุณลูกค้า อยู่คิวที่ {$values->queue_no}\nขณะนี้".constant($values->status);
+                                  $multiMessage->add(new TextMessageBuilder($queue_str));
+                                }
+                              }
+                            }
+
+                            if($is_queue){
+
+                                $actions = array (
+                                  New MessageTemplateActionBuilder("yes", "bill-".$paramBranch[1]),
+                                  New MessageTemplateActionBuilder("no", "No")
+                                );
+        
+
+                                $multiMessage->add(new TemplateMessageBuilder('Confirm Template', new ConfirmTemplateBuilder("ต้องการบิลปัจจุบัน?", $actions)));
+
+                            }
+
+                            
+
+
+                            $replyData = $multiMessage;
+
+                        
                         break;
                          
                         case "qrss":
