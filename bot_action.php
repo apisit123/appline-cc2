@@ -375,8 +375,6 @@ if(!is_null($events)){
                         case (preg_match('(update)', $userMessage) ? true : false):
                           $respRichMenu = $bot->linkRichMenu($userId,RICHMENU);
 
-                          error_log("response richmenu : ".$respRichMenu);
-                          
                           if(json_encode($respRichMenu) == "{}"){
                             $textReplyMessage = "อัพเดทระบบเรียบร้อยแล้ว";
                           }else{
