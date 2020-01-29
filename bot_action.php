@@ -85,7 +85,7 @@ define("cmu", "Too Fast To Sleep\nเชียงใหม่");
 define("inqueue", "รายการสั่งซื้อของลูกค้าถึงพนักงานแล้ว กำลังรอการจัดทำค่ะ");
 define("cooking", "พนักงานกำลังทำรายการของลูกค้าค่ะ");
 define("done", "รายการของลูกค้าเสร็จแล้ว กรุณามารับสินค้าที่แคชเชียร์ค่ะ");
-define("RICHMENU","richmenu-14e79f8f616d100c872e6574e3e7b951");
+define("RICHMENU","richmenu-c23206d2a8500d452551b52271125458");
  
 // ส่วนของการทำงาน
 if(!is_null($events)){

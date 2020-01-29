@@ -74,7 +74,7 @@ $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SE
 
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
-$richmenu = array("richmenu-14e79f8f616d100c872e6574e3e7b951");
+$richmenu = array("richmenu-c23206d2a8500d452551b52271125458");
 
     $json = json_decode($content, true);
     
