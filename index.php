@@ -84,19 +84,20 @@ $richmenu = array("richmenu-c23206d2a8500d452551b52271125458");
 
         $order = $json["data"]["order"];
 
-        \PHPQRCode\QRcode::png('CC'.$order["doc_no"], 'images/CC'.$order["doc_no"].'.png', 'L', 4, 2);
-
         require_once('reciept.php');
+
+        $user_id = $order["member"]["line_id"];
 
         $replyData = make_reciept($order);
 
-        $response = $bot->pushMessage('Ud94502d4803033524f28410ff470272e', $replyData);
+        $response = $bot->pushMessage($user_id, $replyData);
 
-        print_r($response);
-
-        $replyData = new TextMessageBuilder($order["member"]["line_id"],$order["member"]["line_name"]);
-
-        $response = $bot->pushMessage('Ud94502d4803033524f28410ff470272e', $replyData);
+        if ($response->isSucceeded()) { 
+            echo 'Succeeded!';
+            // return;
+        }
+        // Failed
+        echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
     }else{
 
